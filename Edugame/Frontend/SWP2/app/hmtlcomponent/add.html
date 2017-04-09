@@ -1,0 +1,107 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+<div class="body">
+    <navbar></navbar>
+    <form class="form-horizontal" id="Rform" role="form">
+        <div class="form-group">
+            <label for="gamename" class="col-sm-3 control-label">Game Name</label>
+            <div class="col-sm-9">
+                <input required name="gamename" type="text" id="gamename" placeholder="Game Name" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="gamename" class="col-sm-3 control-label">Game Name</label>
+            <div class="col-sm-9">
+                <input required name="gamename" type="text" id="gamename" placeholder="Game Name" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Description" class="col-sm-3 control-label">Description</label>
+            <div class="col-sm-9">
+                <input name="Description" type="text" id="desc" placeholder="Description" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="numberoflevels" class="col-sm-3 control-label">Number of levels</label>
+            <div class="col-sm-9">
+                <input name="age" type="number" id="nooflevels" min="12" max="60" step="1" value="18">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="LevelName" class="col-sm-3 control-label">Level Name</label>
+            <div class="col-sm-9">
+                <input name="LevelName" type="text" id="levelname" placeholder="Level Name" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Level No" class="col-sm-3 control-label">Level Number</label>
+            <div class="col-sm-9">
+                <input name="Level No" type="number" id="LevelNo" placeholder="Level Number" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Question</label>
+            <div class="col-sm-9">
+                <input name="Question" type="text" id="ques" placeholder="Question" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-9">
+                <label class="control-label col-sm-3">Type</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">True or False</label>
+            <div class="col-sm-9">
+                <input name="type" type="radio" id="tf" value="Truefalse">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">MCQ</label>
+            <div class="col-sm-9">
+                <input name="type" type="radio" id="mcq" value="MCQ">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Right Answer Number</label>
+            <div class="col-sm-9">
+                <input name="Right Answer" type="number" id="rightansw" placeholder="Right Answer Number" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group last">
+            <div class="col-sm-offset-3 col-sm-9">
+                <button type="submit" class="btn btn-success btn-sm">ِِِِِAdd new game</button>
+            </div>
+        </div>
+    </form>
+</div>
+<style>
+    .body {
+        background: url("app/images/glasses.jpg");
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .panel-default {
+        opacity: 0.9;
+        margin-top: 30px;
+    }
+    
+    *[role="form"] {
+        opacity: 0.9;
+        max-width: 530px;
+        padding: 15px;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 0.3em;
+    }
+    
+    *[role="form"] h2 {
+        margin-left: 5em;
+        margin-bottom: 1em;
+    }
+</style>
