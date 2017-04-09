@@ -1,18 +1,16 @@
 package com.edugame.achievements;
 
-import com.edugame.game.Game;
-
 public class Achievement {
 
 	private int Score;
-	private Game g;
+	private String gameName;
 	
 	Achievement(){}
 	
-	public Achievement(int score, Game g) {
+	public Achievement(int score, String gameName) {
 		super();
 		Score = score;
-		this.g = g;
+		this.gameName = gameName;
 	}
 
 	public int getScore() {
@@ -21,11 +19,11 @@ public class Achievement {
 	public void setScore(int score) {
 		Score = score;
 	}
-	public Game getGame() {
-		return g;
+	public String getgameName() {
+		return gameName;
 	}
-	public void setGame(Game g) {
-		this.g = g;
+	public void setgameName(String gameName) {
+		this.gameName = gameName;
 	}
 	
 	

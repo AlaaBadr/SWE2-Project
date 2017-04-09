@@ -2,6 +2,7 @@ package com.edugame.level;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edugame.game.Game;
@@ -10,22 +11,19 @@ import com.edugame.game.GameService;
 @Service
 public class LevelService {
 
+	@Autowired
 	private GameService gameService;
 	
-	public LevelService() throws InterruptedException
-	{
-		gameService = new GameService();
+	public LevelService() throws InterruptedException{
+		//gameService = new GameService();
 	}
 	
 	public Level getSpecificLevel(String courseName, String gameName, int levelno)
 	{
 		Game g = gameService.getGame(courseName, gameName);
 		List<Level> levels = g.getLevels();
-		for(Level l: levels)
-		{
-			if(l.getNumber() == levelno)
-				return l;
-		}
+		if(levelno<=levels.size())
+			return levels.get(levelno-1);
 		return null;
 	}
 

@@ -21,12 +21,13 @@ public class AchievementController {
 		return achievementService.showAchievements(username);
 	}
 	
-	@PostMapping("/addAchievement")
-	public Boolean addAchievement(@RequestParam("username") String username,
-								  @RequestParam("courseName") String courseName,
-								  @RequestParam("gameName") String gameName,
-								  @RequestParam("score") int score)
+	@RequestMapping("/checkAnswer/{username}/{courseName}/{gameName}/{levelno}/{rightAnswer}")
+	public Boolean addAchievement(@PathVariable("username") String username,
+								  @PathVariable("courseName") String courseName,
+								  @PathVariable("gameName") String gameName,
+								  @PathVariable("levelno") int levelno,
+								  @PathVariable("rightAnswer") int rightAnswer)
 	{
-		return achievementService.addAchievement(username, courseName, gameName, score);
+		return achievementService.checkAnswer(username, courseName, gameName, levelno, rightAnswer);
 	}
 }
