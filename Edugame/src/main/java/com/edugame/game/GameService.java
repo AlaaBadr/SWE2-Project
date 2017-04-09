@@ -1,8 +1,8 @@
 package com.edugame.game;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edugame.course.Course;
@@ -17,8 +17,7 @@ public class GameService {
 	private CourseService courseService;
 	private UserService userService;
 	
-	public GameService() throws InterruptedException
-	{
+	public GameService() throws InterruptedException{
 		courseService = new CourseService();
 		userService = new UserService();
 	}

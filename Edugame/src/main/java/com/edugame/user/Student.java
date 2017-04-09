@@ -1,10 +1,5 @@
 package com.edugame.user;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.edugame.course.Course;
-
 public class Student extends User{
 	
 	public Student() {

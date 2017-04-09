@@ -15,12 +15,13 @@ public class CourseService {
 	
 	List<Course> courses;
 	public CourseService() throws InterruptedException{
+		userService = new UserService();
 		courses = new ArrayList<>(Arrays.asList(
 				new Course ("Java", (Teacher) userService.searchUser("Ismail_Ahmed"), "Java Course for dummies")
 				));
 	}
 
-	private UserService userService = new UserService();
+	private UserService userService;
 	
 	public List<Course> getAllCourses()
 	{
