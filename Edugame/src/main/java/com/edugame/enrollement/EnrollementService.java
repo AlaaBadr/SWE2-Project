@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edugame.course.Course;
@@ -18,7 +19,7 @@ public class EnrollementService {
 	
 	public EnrollementService() throws InterruptedException
 	{
-		courseService  = new CourseService();
+		courseService = new CourseService();
 		enrolledCourses.put("koko_elda3eef", new ArrayList<Course>());
 		enrolledCourses.get("koko_elda3eef").add(courseService.getCourse("Java"));
 	}
