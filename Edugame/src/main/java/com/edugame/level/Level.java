@@ -1,63 +1,102 @@
 package com.edugame.level;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+import java.util.Set;
 
-public class Level {
-	private String name;
-    private String question;
-    private int number;
-    private List<String> answers;
-    private int rightAnswer ;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-    public Level() {
-        answers = new ArrayList<>();
-    }
+import com.edugame.game.Game;
 
-    public Level(String name, String Question, int RightAnswer) {
-        this.name = name;
-        this.question = Question;
-        this.rightAnswer = RightAnswer;
-        answers= new ArrayList<>();
-    }
+@Entity
+@Table(name = "level")
+public class Level implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6941237780979218200L;
 
-    public String getName() {
-        return name;
-    }
+	@Id
+	@Column(name = "levelName")
+	private String levelName;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	@Column(name = "question")
+	private String question;
 
-    public String getQuestion() {
-        return question;
-    }
+	@Column(name = "number")
+	private int number;
 
-    public void setQuestion(String Question) {
-        this.question = Question;
-    }
+	@Column(name = "rightAnswer")
+	private int rightAnswer;
 
-    public int getNumber() {
-        return number;
-    }
+	@ManyToOne
+	@JoinColumn(name = "name")
+	private Game game;
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
+	@OneToMany(mappedBy = "level", cascade = CascadeType.ALL)
+	private Set<Answer> answers;
 
-    public List<String> getAnswers() {
-        return answers;
-    }
+	public Level() {
+	}
 
-    public void setAnswers(String Ans) {
-        this.answers.add(Ans);
-    }
+	public Level(String name, String Question, int RightAnswer) {
+		levelName = name;
+		this.question = Question;
+		this.rightAnswer = RightAnswer;
+	}
 
-    public int getRightAnswer() {
-        return rightAnswer;
-    }
+	public String getName() {
+		return levelName;
+	}
 
-    public void setRightAnswer(int RightAnswer) {
-        this.rightAnswer = RightAnswer;
-    }
+	public void setName(String name) {
+		levelName = name;
+	}
+
+	public String getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(String Question) {
+		this.question = Question;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public int getRightAnswer() {
+		return rightAnswer;
+	}
+
+	public void setRightAnswer(int RightAnswer) {
+		this.rightAnswer = RightAnswer;
+	}
+
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
+	public Set<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(Set<Answer> answers) {
+		this.answers = answers;
+	}
+
 }

@@ -16,7 +16,7 @@ public class CourseController {
 	
 	@Autowired
 	private CourseService courseService;
-
+	
 	@RequestMapping("/showCourses")
 	public List<Course> showCourses()
 	{
@@ -35,9 +35,9 @@ public class CourseController {
 		return courseService.getCourse(name);
 	}
 	
-	@PostMapping("/addCourse")
-	public Course saveCourse(@RequestBody Course c) throws InterruptedException
+	@PostMapping("/{teacherUsername}/addCourse")
+	public Course saveCourse(@PathVariable("teacherUsername") String username, @RequestBody Course c) throws InterruptedException
 	{
-		return courseService.saveCourse(c);
+		return courseService.saveCourse(c, username);
 	}
 }

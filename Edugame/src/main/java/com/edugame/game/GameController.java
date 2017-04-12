@@ -22,10 +22,10 @@ public class GameController {
 	}
 	
 	//msh ha5od hna teacherUsername wala 3shan hwa obj gwa elgame nfsaha wala eh?!
-	@PostMapping("/addGame/{courseName}")
-	public Boolean addGame(@RequestBody Game g, @PathVariable("courseName") String courseName) throws InterruptedException
+	@PostMapping("/addGame/{courseName}/{teacherUsername}")
+	public Boolean addGame(@RequestBody Game g, @PathVariable("courseName") String courseName, @PathVariable("teacherUsername") String username) throws InterruptedException
 	{
-		return gameService.addGame(g, courseName);
+		return gameService.addGame(g, courseName, username);
 	}
 	
 	@RequestMapping("/getGame/{courseName}/{gameName}")
