@@ -24,6 +24,7 @@ public class AchievementService {
 	
 	public Boolean addAchievement(String username, String gameName, int levelno)
 	{
+		/*
 		if(!achievements.containsKey(username))
 			achievements.put(username, new ArrayList<Achievement>());
 		ArrayList<Achievement> userAchievements = achievements.get(username);
@@ -38,6 +39,7 @@ public class AchievementService {
 			}
 		}
 		userAchievements.add(new Achievement(levelno*100, gameName));
+		*/
 		return true;
 	}
 
@@ -46,8 +48,8 @@ public class AchievementService {
 		return achievements.get(username);
 	}
 
-	public Boolean checkAnswer(String username, String courseName, String gameName, int levelno, int rightAnswer) {
-		Level l = levelService.getSpecificLevel(courseName, gameName, levelno);
+	public Boolean checkAnswer(String username, String gameName, int levelno, int rightAnswer) {
+		Level l = levelService.getSpecificLevel(gameName, levelno);
 		if(rightAnswer == l.getRightAnswer())
 		{
 			addAchievement(username, gameName, levelno);

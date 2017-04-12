@@ -13,17 +13,17 @@ public class LevelController {
 	@Autowired
 	private LevelService levelService;
 	
-	@RequestMapping("/{courseName}/playGame/{gameName}/{levelno}")
-	public Level getLevel(@PathVariable("courseName") String courseName, @PathVariable("gameName") String gameName, @PathVariable("levelno") int levelno)
+	@RequestMapping("/playGame/{gameName}/{levelno}")
+	public Level getLevel(@PathVariable("gameName") String gameName, @PathVariable("levelno") int levelno)
 	{
-		return levelService.getSpecificLevel(courseName, gameName, levelno);
+		return levelService.getSpecificLevel(gameName, levelno);
 	}
 	
 	//ERROR!!
 	//Game is null!!
-	@RequestMapping("/{courseName}/playGame/{gameName}")
-	public List<Level> getLevels(@PathVariable("courseName") String courseName, @PathVariable("gameName") String gameName)
+	@RequestMapping("/playGame/{gameName}")
+	public List<Level> getLevels(@PathVariable("gameName") String gameName)
 	{
-		return levelService.getLevels(courseName, gameName);
+		return levelService.getLevels(gameName);
 	}
 }
