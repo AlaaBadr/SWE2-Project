@@ -1,34 +1,49 @@
 package com.edugame.game;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edugame.course.Course;
+import com.edugame.course.CourseRepository;
 import com.edugame.course.CourseService;
+import com.edugame.level.Answer;
 import com.edugame.level.Level;
+import com.edugame.level.LevelRepository;
 import com.edugame.user.Teacher;
+import com.edugame.user.TeacherRepository;
 import com.edugame.user.UserService;
 
 @Service
 public class GameService {
 	
-	private CourseService courseService;
-	private UserService userService;
+	@Autowired
+	private GameRepository gameRep;
+	
+	@Autowired
+	private CourseRepository courseRep;
+	
+	@Autowired
+	private TeacherRepository teacherRep;
 	
 	public GameService() throws InterruptedException{
-		courseService = new CourseService();
-		userService = new UserService();
 	}
 
-	public List<Game> getGamesOfCourse(String courseName) {
+	public List<Game> getGamesOfCourse(String courseName)
+	{
+		/*
 		Course c = courseService.getCourse(courseName);
 		return c.getGames();
+		*/
+		return gameRep.findByCourseCourseName(courseName);
 	}
 	
-	public Boolean addGame(Game g, String courseName) throws InterruptedException
+	public Boolean addGame(Game g, String courseName, String username) throws InterruptedException
 	{
+		/*
 		Course c = courseService.getCourse(courseName);
 		if(c == null)
 			courseService.saveCourse(c);
@@ -45,13 +60,39 @@ public class GameService {
 			}
 		}
 		g.setOwner((Teacher) userService.searchUser(g.getOwner().getUsername()));
-		g.setID();
 		games.add(g);
+		*/
+		if(gameRep.findOne(g.getName()) != null)
+			return false;
+		Teacher t = teacherRep.findOne(username);
+		g.setGameOwner(t);
+		Course c = courseRep.findOne(courseName);
+		g.setCourse(c);
+		if(g.getType().equals("TorF"))
+		{
+			HashSet<Level> levels = (HashSet<Level>) g.getLevels();
+			for(Level l: levels)
+			{
+				/*
+				Set<Answer> answers = new HashSet<>();
+				answers.add(new Answer("True"));
+				answers.add(new Answer("False"));
+				for(Answer a : answers)
+				{
+					a.setLevel(l);
+				}
+				l.setAnswers(answers);
+				*/
+				l.setGame(g);
+			}
+		}
+		gameRep.save(g);
 		return true;
 	}
 
 	public Game getGame(String courseName, String gameName)
 	{
+		/*
 		Course c = courseService.getCourse(courseName);
 		List<Game> games = c.getGames();
 		for(Game g: games)
@@ -59,7 +100,8 @@ public class GameService {
 			if(g.getName().equals(gameName))
 				return g;
 		}
-		return null;
+		*/
+		return gameRep.findByCourseCourseNameAndName(courseName, gameName);
 	}
 
 }

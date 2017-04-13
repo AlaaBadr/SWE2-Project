@@ -12,26 +12,35 @@ import com.edugame.game.GameService;
 public class LevelService {
 
 	@Autowired
+	private LevelRepository levelRep;
+	
+	@Autowired
 	private GameService gameService;
 	
 	public LevelService() throws InterruptedException{
 		//gameService = new GameService();
 	}
 	
-	public Level getSpecificLevel(String courseName, String gameName, int levelno)
+	public Level getSpecificLevel(String gameName, int levelno)
 	{
+		/*
 		Game g = gameService.getGame(courseName, gameName);
 		List<Level> levels = g.getLevels();
 		if(levelno<=levels.size())
 			return levels.get(levelno-1);
-		return null;
+		*/
+		return levelRep.findByGameNameAndNumber(gameName, levelno);
 	}
 
-	public List<Level> getLevels(String courseName, String gameName) {
+	public List<Level> getLevels(String gameName)
+	{
+		/*
 		Game g = gameService.getGame(courseName, gameName);
 		if(g == null)
 			return null;
 		return g.getLevels();
+		*/
+		return levelRep.findAllByGameName(gameName);
 	}
 	
 	

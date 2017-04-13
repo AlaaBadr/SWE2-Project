@@ -1,30 +1,71 @@
 package com.edugame.achievements;
 
-public class Achievement {
+import java.io.Serializable;
 
-	private int Score;
-	private String gameName;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.edugame.game.Game;
+import com.edugame.user.Student;
+
+@Entity
+@Table(name = "achievement")
+public class Achievement implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6733006826848577088L;
+
+	@Column(name = "score")
+	private int score;
+
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "studentUsername")
+	private Student student;
+
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "gameName")
+	private Game gameinAch;
 	
-	Achievement(){}
-	
-	public Achievement(int score, String gameName) {
+	Achievement() {
+	}
+
+	public Achievement(int score, Student student, Game game) {
 		super();
-		Score = score;
-		this.gameName = gameName;
+		this.score = score;
+		this.student = student;
+		gameinAch = game;
 	}
 
 	public int getScore() {
-		return Score;
+		return score;
 	}
+
 	public void setScore(int score) {
-		Score = score;
+		this.score = score;
 	}
-	public String getgameName() {
-		return gameName;
+
+	public Student getStudent() {
+		return student;
 	}
-	public void setgameName(String gameName) {
-		this.gameName = gameName;
+
+	public void setStudent(Student student) {
+		this.student = student;
 	}
-	
-	
+
+	public Game getGame() {
+		return gameinAch;
+	}
+
+	public void setGame(Game game) {
+		gameinAch = game;
+	}
+
 }

@@ -1,96 +1,111 @@
 package com.edugame.user;
 
-import java.util.Date;
+import java.io.Serializable;
 
-//import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.Table;
 
-//@Entity
-public abstract class User {
-	
-	 private String name;
-	   private String gender;
-	   private int age;
-	   private String email;
-	   private String username;
-	   private String password;
-	   private int ID;
-	   private String identity;
+@Entity
+@Inheritance
+@Table(name = "user")
+public abstract class User implements Serializable{
 
-	    public User() {
-	    }
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5744958939104552952L;
 
-	    public User(String name, String gender, int age, String email, String username, String password) {
-	        this.name = name;
-	        this.gender = gender;
-	        this.age = age;
-	        this.email = email;
-	        this.username = username;
-	        this.password = password;
-	        this.ID= (int) new Date().getTime();
-	    }
+	@Column(name = "name")
+	private String name;
 
-	    public void setIdentity(String Identity){
-	        this.identity=Identity;
-	    }
-	    public String getIdentity(){
-	        return identity;
-	    }
-	    public String getName() {
-	        return name;
-	    }
+	@Column(name = "gender")
+	private String gender;
 
-	    public void setName(String name) {
-	        this.name = name;
-	    }
+	@Column(name = "age")
+	private int age;
 
-	    public String getGender() {
-	        return gender;
-	    }
+	@Column(unique = true, name = "email")
+	private String email;
 
-	    public void setGender(String gender) {
-	        this.gender = gender;
-	    }
+	@Id
+	@Column(name = "username")
+	private String username;
 
-	    public int getAge() {
-	        return age;
-	    }
+	@Column(name = "password")
+	private String password;
 
-	    public void setAge(int age) {
-	        this.age = age;
-	    }
+	@Column(name = "identity")
+	private String identity;
 
-	    public String getEmail() {
-	        return email;
-	    }
+	public User() {
+	}
 
-	    public void setEmail(String email) {
-	        this.email = email;
-	    }
+	public User(String name, String gender, int age, String email, String username, String password) {
+		this.name = name;
+		this.gender = gender;
+		this.age = age;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+	}
 
-	    public String getUsername() {
-	        return username;
-	    }
+	public void setIdentity(String Identity) {
+		this.identity = Identity;
+	}
 
-	    public void setUsername(String username) {
-	        this.username = username;
-	    }
-	    
-	    public String getPassword() {
-	        return password;
-	    }
+	public String getIdentity() {
+		return identity;
+	}
 
-	    public void setPassword(String password) {
-	        this.password = password;
-	    }
+	public String getName() {
+		return name;
+	}
 
-	    public int getID() {
-	        return ID;
-	    }
-	    
-	    void setID() {
-	        this.ID = (int) new Date().getTime();
-	    }
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 }
