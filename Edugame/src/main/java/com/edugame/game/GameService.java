@@ -3,6 +3,7 @@ package com.edugame.game;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,8 +74,8 @@ public class GameService {
 			HashSet<Level> levels = (HashSet<Level>) g.getLevels();
 			for(Level l: levels)
 			{
-				/*
-				Set<Answer> answers = new HashSet<>();
+				
+				Set<Answer> answers = new TreeSet<>();
 				answers.add(new Answer("True"));
 				answers.add(new Answer("False"));
 				for(Answer a : answers)
@@ -82,7 +83,7 @@ public class GameService {
 					a.setLevel(l);
 				}
 				l.setAnswers(answers);
-				*/
+				
 				l.setGame(g);
 			}
 		}

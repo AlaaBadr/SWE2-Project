@@ -3,8 +3,11 @@ package com.edugame.achievements;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -14,6 +17,7 @@ import com.edugame.user.Student;
 
 @Entity
 @Table(name = "achievement")
+@IdClass(AchievementID.class)
 public class Achievement implements Serializable {
 
 	/**
@@ -23,7 +27,7 @@ public class Achievement implements Serializable {
 
 	@Column(name = "score")
 	private int score;
-
+	
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "studentUsername")
@@ -33,15 +37,19 @@ public class Achievement implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "gameName")
 	private Game gameinAch;
-	
+
+	//private AchievementID achId;
+
 	Achievement() {
+		//achId = new AchievementID();
 	}
 
-	public Achievement(int score, Student student, Game game) {
+	public Achievement(int score, Student s, Game g) {
 		super();
 		this.score = score;
-		this.student = student;
-		gameinAch = game;
+		student = s;
+		gameinAch = g;
+		//achId = ach;
 	}
 
 	public int getScore() {
@@ -60,12 +68,21 @@ public class Achievement implements Serializable {
 		this.student = student;
 	}
 
-	public Game getGame() {
+	public Game getGameinAch() {
 		return gameinAch;
 	}
 
-	public void setGame(Game game) {
-		gameinAch = game;
+	public void setGameinAch(Game gameinAch) {
+		this.gameinAch = gameinAch;
 	}
+
+//	public AchievementID getAchId() {
+//		return achId;
+//	}
+//
+//	public void setAchId(AchievementID achId) {
+//		this.achId = achId;
+//	}
+	
 
 }

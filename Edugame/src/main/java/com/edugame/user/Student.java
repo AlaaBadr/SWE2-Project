@@ -9,6 +9,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.edugame.achievements.Achievement;
+import com.edugame.achievements.AchievementID;
 import com.edugame.course.Course;
 
 @Entity
@@ -49,4 +50,6 @@ public class Student extends User implements Serializable{
 		this.achivements = achivements;
 	}
 
+	
+	
 }
