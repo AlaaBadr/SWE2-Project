@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "answer")
-public class Answer implements Serializable, Comparable<Answer>{
+public class Answer implements Serializable{
 
 	/**
 	 * 
@@ -48,11 +48,6 @@ public class Answer implements Serializable, Comparable<Answer>{
 
 	public void setLevel(Level level) {
 		this.level = level;
-	}
-
-	@Override
-	public int compareTo(Answer ans) {
-		return Integer.compare(answer.hashCode(), ans.getAnswer().hashCode());
 	}
 
 }
