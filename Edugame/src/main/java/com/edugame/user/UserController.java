@@ -19,23 +19,16 @@ public class UserController {
 		return "Say Hello ya 7ayawan";
 	}
 	
-	@PostMapping("/login")
+	@PostMapping("/edugame/login")
 	public User login(@RequestParam("username") String username, @RequestParam("password") String password)
 	{
 		return userService.search(username,password);
 	}
 	
-	@PostMapping("/register/teacher")
-	public User registerTeacher(@RequestBody Teacher t)
+	@PostMapping("/edugame/register")
+	public User registerTeacher(@RequestBody User u)
 	{
-		return userService.register(t);
+		return userService.register(u);
 	}
 	
-	@PostMapping("/register/student")
-	public User registerStudent(@RequestBody Student s)
-	{
-		//System.out.println("da5al elservice");
-		//System.out.println(s.getUsername());
-		return userService.register(s);
-	}
 }

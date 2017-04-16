@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.edugame.achievements.AchievementService;
 import com.edugame.game.Game;
 import com.edugame.game.GameService;
 
@@ -16,6 +17,9 @@ public class LevelService {
 	
 	@Autowired
 	private GameService gameService;
+	
+	@Autowired
+	private AchievementService achService;
 	
 	public LevelService() throws InterruptedException{
 		//gameService = new GameService();
@@ -43,6 +47,14 @@ public class LevelService {
 		return levelRep.findAllByGameName(gameName);
 	}
 	
-	
+	public Boolean checkAnswer(String username, String gameName, int levelno, int rightAnswer) {
+		Level l = getSpecificLevel(gameName, levelno);
+		if(rightAnswer == l.getRightAnswer())
+		{
+			achService.addAchievement(username, gameName, levelno);
+			return true;
+		}
+		return false;
+	}
 
 }
