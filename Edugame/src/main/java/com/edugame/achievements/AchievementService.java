@@ -65,13 +65,4 @@ public class AchievementService {
 		//return achievements.get(username);
 	}
 
-	public Boolean checkAnswer(String username, String gameName, int levelno, int rightAnswer) {
-		Level l = levelService.getSpecificLevel(gameName, levelno);
-		if(rightAnswer == l.getRightAnswer())
-		{
-			addAchievement(username, gameName, levelno);
-			return true;
-		}
-		return false;
-	}
 }
