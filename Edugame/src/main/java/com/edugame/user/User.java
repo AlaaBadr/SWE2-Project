@@ -8,9 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 @Entity
 @Inheritance
 @Table(name = "user")
+//@JsonDeserialize(using = UserDeserializer.class)
 public abstract class User implements Serializable{
 
 	/**

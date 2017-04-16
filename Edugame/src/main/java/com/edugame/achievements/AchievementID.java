@@ -21,28 +21,28 @@ public class AchievementID implements Serializable{
 	//@Id
 	//@ManyToOne
 	//@JoinColumn(name = "studentUsername")
-	private Student student;
+	private String student;
 
 //	@Id
 //	@ManyToOne
 //	@JoinColumn(name = "gameName")
-	private Game gameinAch;
+	private String gameinAch;
 	
 	public AchievementID()
 	{
 		
 	}
 	
-	public AchievementID(Student s, Game g) {
+	public AchievementID(String s, String g) {
 		student = s;
 		gameinAch = g;
 	}
 
-	public Student getStudent() {
+	public String getStudent() {
 		return student;
 	}
 
-	public Game getGame() {
+	public String getGame() {
 		return gameinAch;
 	}
 
