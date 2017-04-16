@@ -25,10 +25,15 @@ public class UserController {
 		return userService.search(username,password);
 	}
 	
-	@PostMapping("/edugame/register")
-	public User registerTeacher(@RequestBody User u)
+	@PostMapping("/edugame/register/teacher")
+	public User registerTeacher(@RequestBody Teacher t)
 	{
-		return userService.register(u);
+		return userService.register(t);
 	}
 	
+	@PostMapping("/edugame/register/student")
+	public User registerStudent(@RequestBody Student s)
+	{
+		return userService.register(s);
+	}
 }

@@ -33,7 +33,7 @@ public class AchievementService {
 		//levelService = new LevelService();
 	}
 	
-	public Boolean addAchievement(String username, String gameName, int levelno)
+	public void addAchievement(String username, String gameName, int levelno)
 	{
 		/*
 		if(!achievements.containsKey(username))
@@ -51,12 +51,11 @@ public class AchievementService {
 		}
 		userAchievements.add(new Achievement(levelno*100, gameName));
 		*/
-		AchievementID achId = new AchievementID(studentRep.findByUsername(username), gameRep.findOne(gameName));
+		AchievementID achId = new AchievementID(username, gameName);
+		if(levelno*100 <= achRep.findOne(achId).getScore())
+			return;
 		Achievement ach = new Achievement(levelno*100, studentRep.findByUsername(username), gameRep.findOne(gameName));
-		if(achRep.findOne(achId) != null)
-			return false;
 		achRep.save(ach);
-		return true;
 	}
 
 	public List<Achievement> showAchievements(String username)
