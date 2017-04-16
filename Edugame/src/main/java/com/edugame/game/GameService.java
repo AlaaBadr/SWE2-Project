@@ -1,5 +1,6 @@
 package com.edugame.game;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,6 +30,9 @@ public class GameService {
 	
 	@Autowired
 	private TeacherRepository teacherRep;
+	
+	@Autowired
+	private LevelRepository lvlRep;
 	
 	public GameService() throws InterruptedException{
 	}
@@ -69,25 +73,31 @@ public class GameService {
 		g.setGameOwner(t);
 		Course c = courseRep.findOne(courseName);
 		g.setCourse(c);
+		ArrayList<Level>levels = (ArrayList<Level>) g.getLevels();
 		if(g.getType().equals("TorF"))
 		{
-			HashSet<Level> levels = (HashSet<Level>) g.getLevels();
+			
 			for(Level l: levels)
 			{
 				
-				Set<Answer> answers = new TreeSet<>();
+				ArrayList<Answer> answers = new ArrayList<>();
 				answers.add(new Answer("True"));
-				answers.add(new Answer("False"));
-				for(Answer a : answers)
-				{
-					a.setLevel(l);
-				}
+				answers.add(new Answer ("False"));
+//				for(Answer a : answers)
+//				{
+//					a.setLevel(l);
+//				}
 				l.setAnswers(answers);
 				
 				l.setGame(g);
 			}
 		}
 		gameRep.save(g);
+		// Throws an Exception !! Needs to save Answers First
+		for(Level l: levels)
+		{
+			lvlRep.save(l);
+		}
 		return true;
 	}
 

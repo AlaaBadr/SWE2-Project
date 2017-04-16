@@ -1,6 +1,7 @@
 package com.edugame.level;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -40,7 +41,7 @@ public class Level implements Serializable{
 	private Game game;
 
 	@OneToMany(mappedBy = "level", cascade = CascadeType.ALL)
-	private Set<Answer> answers;
+	private transient List<Answer> answers;
 
 	public Level() {
 	}
@@ -91,11 +92,11 @@ public class Level implements Serializable{
 		this.game = game;
 	}
 
-	public Set<Answer> getAnswers() {
+	public List<Answer> getAnswers() {
 		return answers;
 	}
 
-	public void setAnswers(Set<Answer> answers) {
+	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
 	}
 

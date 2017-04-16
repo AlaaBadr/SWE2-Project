@@ -1,6 +1,7 @@
 package com.edugame.game;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -34,10 +35,10 @@ public class Game implements Serializable {
 	private String type;
 
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
-	private Set<Level> levels;
+	private transient List<Level> levels;
 
 	@OneToMany(mappedBy = "gameinAch", cascade = CascadeType.ALL)
-	private Set<Achievement> achievements;
+	private List<Achievement> achievements;
 
 	@ManyToOne
 	@JoinColumn(name = "username")
@@ -77,11 +78,11 @@ public class Game implements Serializable {
 		this.type = type;
 	}
 
-	public Set<Level> getLevels() {
+	public List<Level> getLevels() {
 		return levels;
 	}
 
-	public void setLevels(Set<Level> levels) {
+	public void setLevels(List<Level> levels) {
 		this.levels = levels;
 	}
 
@@ -93,11 +94,11 @@ public class Game implements Serializable {
 		this.levelno = levelno;
 	}
 
-	public Set<Achievement> getAchievements() {
+	public List<Achievement> getAchievements() {
 		return achievements;
 	}
 
-	public void setAchievements(Set<Achievement> achievements) {
+	public void setAchievements(List<Achievement> achievements) {
 		this.achievements = achievements;
 	}
 
