@@ -2,30 +2,14 @@ package com.edugame.achievements;
 
 import java.io.Serializable;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.edugame.game.Game;
-import com.edugame.user.Student;
-
-//@Entity
 public class AchievementID implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8597626675298796154L;
 
-	//@Id
-	//@ManyToOne
-	//@JoinColumn(name = "studentUsername")
 	private String student;
 
-//	@Id
-//	@ManyToOne
-//	@JoinColumn(name = "gameName")
 	private String gameinAch;
 	
 	public AchievementID()

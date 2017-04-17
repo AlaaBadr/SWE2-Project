@@ -9,8 +9,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.edugame.achievements.Achievement;
-import com.edugame.achievements.AchievementID;
 import com.edugame.course.Course;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Student extends User implements Serializable{
@@ -21,9 +21,11 @@ public class Student extends User implements Serializable{
 	private static final long serialVersionUID = 9181249412970690507L;
 
 	@ManyToMany(mappedBy = "students")
+	@JsonIgnore
 	private Set<Course> courses;
 
 	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Set<Achievement> achivements;
 
 	public Student() {
@@ -50,6 +52,4 @@ public class Student extends User implements Serializable{
 		this.achivements = achivements;
 	}
 
-	
-	
 }

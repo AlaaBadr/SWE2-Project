@@ -13,12 +13,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/hello")
-	public String sayHello()
-	{
-		return "Say Hello ya 7ayawan";
-	}
-	
 	@PostMapping("/edugame/login")
 	public User login(@RequestParam("username") String username, @RequestParam("password") String password)
 	{

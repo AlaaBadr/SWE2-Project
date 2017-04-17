@@ -1,16 +1,14 @@
 package com.edugame.level;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.edugame.game.Game;
@@ -40,8 +38,8 @@ public class Level implements Serializable{
 	@JoinColumn(name = "name")
 	private Game game;
 
-	@OneToMany(mappedBy = "level", cascade = CascadeType.ALL)
-	private transient List<Answer> answers;
+	@Column(name = "answers")
+	private ArrayList<String> answers;
 
 	public Level() {
 	}
@@ -92,11 +90,11 @@ public class Level implements Serializable{
 		this.game = game;
 	}
 
-	public List<Answer> getAnswers() {
+	public List<String> getAnswers() {
 		return answers;
 	}
 
-	public void setAnswers(List<Answer> answers) {
+	public void setAnswers(ArrayList<String> answers) {
 		this.answers = answers;
 	}
 
