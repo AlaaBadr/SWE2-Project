@@ -1,7 +1,5 @@
 package com.edugame.course;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import com.edugame.user.Teacher;
 import com.edugame.user.TeacherRepository;

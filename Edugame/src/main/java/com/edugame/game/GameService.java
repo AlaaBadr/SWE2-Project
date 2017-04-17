@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.edugame.course.Course;
 import com.edugame.course.CourseRepository;
 import com.edugame.level.Level;
-import com.edugame.level.LevelRepository;
 import com.edugame.user.Teacher;
 import com.edugame.user.TeacherRepository;
 
@@ -24,10 +23,7 @@ public class GameService {
 	
 	@Autowired
 	private TeacherRepository teacherRep;
-	
-	@Autowired
-	private LevelRepository lvlRep;
-	
+		
 	public GameService(){
 	}
 
@@ -49,20 +45,21 @@ public class GameService {
 		{
 			for(Level l: levels)
 			{
-				
 				ArrayList<String> answers = new ArrayList<>();
 				answers.add("True");
 				answers.add("False");
 				l.setAnswers(answers);
-				
+				l.setGame(g);
+			}
+		}
+		else
+		{
+			for(Level l: levels)
+			{
 				l.setGame(g);
 			}
 		}
 		gameRep.save(g);
-		for(Level l: levels)
-		{
-			lvlRep.save(l);
-		}
 		return true;
 	}
 

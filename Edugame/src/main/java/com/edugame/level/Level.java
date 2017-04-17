@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.edugame.game.Game;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "level")
@@ -36,6 +37,7 @@ public class Level implements Serializable{
 
 	@ManyToOne
 	@JoinColumn(name = "name")
+	@JsonIgnore
 	private Game game;
 
 	@Column(name = "answers")
