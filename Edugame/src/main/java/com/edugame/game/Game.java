@@ -30,6 +30,9 @@ public class Game implements Serializable {
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "description")
+	private String description;
+	
 	@Column(name = "type")
 	private String type;
 
@@ -116,6 +119,14 @@ public class Game implements Serializable {
 
 	public void setCourse(Course course) {
 		this.course = course;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
