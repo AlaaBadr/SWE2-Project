@@ -34,7 +34,7 @@ public class Game implements Serializable {
 	private String type;
 
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
-	private transient List<Level> levels;
+	private List<Level> levels;
 
 	@OneToMany(mappedBy = "gameinAch", cascade = CascadeType.ALL)
 	@JsonIgnore
