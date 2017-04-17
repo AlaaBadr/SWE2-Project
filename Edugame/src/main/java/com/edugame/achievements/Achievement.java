@@ -44,7 +44,6 @@ public class Achievement implements Serializable {
 		this.score = score;
 		student = s;
 		gameinAch = g;
-		//achId = ach;
 	}
 
 	public int getScore() {

@@ -1,6 +1,9 @@
 package com.edugame.course;
 
 import java.util.List;
+
+import com.edugame.user.Student;
+import com.edugame.user.StudentRepository;
 import com.edugame.user.Teacher;
 import com.edugame.user.TeacherRepository;
 
@@ -15,6 +18,9 @@ public class CourseService {
 	
 	@Autowired
 	private TeacherRepository teacherRep;
+	
+	@Autowired
+	private StudentRepository studentRep;
 	
 	public CourseService(){
 	}
@@ -41,5 +47,20 @@ public class CourseService {
 		Teacher t = teacherRep.findByUsername(username);
 		c.setCourseOwner(t);
 		return courseRep.save(c);
+	}
+
+	public List<Course> getAllCoursesByStudent(String username) {
+		return studentRep.findByUsername(username).getCourses();
+	}
+
+	public Boolean enrollStudent(String courseName, String username) {
+		Course c = courseRep.findOne(courseName);
+		List<Student> students = c.getStudents();
+		Student s = studentRep.findByUsername(username);
+		if(students.contains(s))
+			return false;
+		students.add(s);
+		courseRep.save(c);
+		return true;
 	}
 }
