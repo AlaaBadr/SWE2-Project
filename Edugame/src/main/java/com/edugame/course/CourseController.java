@@ -29,6 +29,12 @@ public class CourseController {
 		return courseService.getAllCoursesByTeacher(username);
 	}
 	
+	@GetMapping("/edugame/enrolledCourses/{studentUsername}")
+	public List<Course> showStudentCourses(@PathVariable("studentUsername") String username)
+	{
+		return courseService.getAllCoursesByStudent(username);
+	}
+	
 	@GetMapping("/edugame/courses/{courseName}")
 	public Course getCourse(@PathVariable("courseName") String name)
 	{
@@ -39,5 +45,11 @@ public class CourseController {
 	public Course saveCourse(@PathVariable("teacherUsername") String username, @RequestBody Course c) throws InterruptedException
 	{
 		return courseService.saveCourse(c, username);
+	}
+	
+	@GetMapping("/edugame/courses/{courseName}/enroll/{studentUsername}")
+	public Boolean enrollStudent(@PathVariable("courseName") String courseName, @PathVariable("studentUsername") String username)
+	{
+		return courseService.enrollStudent(courseName, username);
 	}
 }
