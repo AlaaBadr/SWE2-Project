@@ -3,8 +3,6 @@ package com.edugame.achievements;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -38,10 +36,7 @@ public class Achievement implements Serializable {
 	@JoinColumn(name = "gameName")
 	private Game gameinAch;
 
-	//private AchievementID achId;
-
 	Achievement() {
-		//achId = new AchievementID();
 	}
 
 	public Achievement(int score, Student s, Game g) {
@@ -75,14 +70,5 @@ public class Achievement implements Serializable {
 	public void setGameinAch(Game gameinAch) {
 		this.gameinAch = gameinAch;
 	}
-
-//	public AchievementID getAchId() {
-//		return achId;
-//	}
-//
-//	public void setAchId(AchievementID achId) {
-//		this.achId = achId;
-//	}
-	
 
 }

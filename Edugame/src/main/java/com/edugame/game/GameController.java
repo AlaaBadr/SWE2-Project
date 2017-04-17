@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,7 +21,6 @@ public class GameController {
 		return gameService.getGamesOfCourse(courseName);
 	}
 	
-	//msh ha5od hna teacherUsername wala 3shan hwa obj gwa elgame nfsaha wala eh?!
 	@PostMapping("/edugame/courses/{teacherUsername}/{courseName}/games/addGame")
 	public Boolean addGame(@RequestBody Game g, @PathVariable("courseName") String courseName, @PathVariable("teacherUsername") String username) throws InterruptedException
 	{
