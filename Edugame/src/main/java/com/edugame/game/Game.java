@@ -2,7 +2,6 @@ package com.edugame.game;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,10 +13,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.edugame.achievements.Achievement;
-import com.edugame.achievements.AchievementID;
 import com.edugame.course.Course;
 import com.edugame.level.Level;
 import com.edugame.user.Teacher;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "game")
@@ -35,9 +34,10 @@ public class Game implements Serializable {
 	private String type;
 
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
-	private transient List<Level> levels;
+	private List<Level> levels;
 
 	@OneToMany(mappedBy = "gameinAch", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Achievement> achievements;
 
 	@ManyToOne
