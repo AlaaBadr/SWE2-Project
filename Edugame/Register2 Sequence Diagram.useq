@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.14" icons="true" automaticImage="JPEG">  
+  <object id="1" language="java" name="com.edugame.Frontend" project="Edugame" 
+    file="/Edugame/src/main/java/com/edugame/Frontend.java" binary="false" label="frontend" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="86" y="0"/>    
+    <execution id="2">      
+      <position height="282" width="73" x="5" y="99"/>    
+    </execution>    
+    <execution id="5">      
+      <position height="21" width="7" x="38" y="308"/>    
+    </execution>  
+  </object>  
+  <object id="6" language="java" name="com.edugame.user.UserController" project="Edugame" 
+    file="/Edugame/src/main/java/com/edugame/user/UserController.java" binary="false" label="userController" 
+    type="class" autoSize="true">    
+    <position height="-1" width="-1" x="220" y="0"/>    
+    <execution id="4">      
+      <position height="240" width="106" x="82" y="120"/>    
+    </execution>    
+    <execution id="10">      
+      <position height="21" width="7" x="132" y="276"/>    
+    </execution>  
+  </object>  
+  <object id="11" language="java" name="com.edugame.user.UserService" project="Edugame" 
+    file="/Edugame/src/main/java/com/edugame/user/UserService.java" binary="false" label="userService" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="8">      
+      <position height="198" width="0" x="0" y="141"/>    
+    </execution>    
+    <execution id="13">      
+      <position height="135" width="0" x="0" y="183"/>    
+    </execution>    
+    <execution id="17">      
+      <position height="21" width="7" x="238" y="241"/>    
+    </execution>  
+  </object>  
+  <object id="18" language="java" name="org.springframework.data.repository.CrudRepository" project="Edugame" 
+    file="C:/Users/Alaa/.m2/repository/org/springframework/data/spring-data-commons/1.12.5.RELEASE/spring-data-commons-1.12.5.RELEASE.jar" 
+    binary="true" label="teacherRep" type="interface" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="15">      
+      <position height="69" width="0" x="0" y="214"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="registerTeacher(com.edugame.user.Teacher):com.edugame.user.User" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="7" operation="register(com.edugame.user.User):com.edugame.user.User" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </message>  
+  <message id="9" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </message>  
+  <message id="12" operation="addUser(com.edugame.user.User):void" asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="13"/>  
+  </message>  
+  <message id="14" operation="save(S):S" asynchronous="false">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="15"/>  
+  </message>  
+  <message id="16" asynchronous="false">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="10"/>  
+  </message>  
+  <message id="19" asynchronous="false">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="17"/>  
+  </message>
+</sequence-diagram>

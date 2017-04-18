@@ -1,7 +1,7 @@
 package com.edugame.user;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 
 import com.edugame.achievements.Achievement;
 import com.edugame.course.Course;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Student extends User implements Serializable{
@@ -20,10 +21,12 @@ public class Student extends User implements Serializable{
 	private static final long serialVersionUID = 9181249412970690507L;
 
 	@ManyToMany(mappedBy = "students")
-	private Set<Course> courses;
+	@JsonIgnore
+	private List<Course> courses;
 
 	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-	private Set<Achievement> achivements;
+	@JsonIgnore
+	private List<Achievement> achivements;
 
 	public Student() {
 	}
@@ -33,19 +36,19 @@ public class Student extends User implements Serializable{
 		setIdentity("Student");
 	}
 
-	public Set<Course> getCourses() {
+	public List<Course> getCourses() {
 		return courses;
 	}
 
-	public void setCourses(Set<Course> courses) {
+	public void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
 
-	public Set<Achievement> getAchivements() {
+	public List<Achievement> getAchivements() {
 		return achivements;
 	}
 
-	public void setAchivements(Set<Achievement> achivements) {
+	public void setAchivements(List<Achievement> achivements) {
 		this.achivements = achivements;
 	}
 
