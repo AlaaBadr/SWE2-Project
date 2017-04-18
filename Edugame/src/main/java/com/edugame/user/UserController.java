@@ -13,6 +13,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+
 	@RequestMapping("/hello")
 	public String sayHello()
 	{
