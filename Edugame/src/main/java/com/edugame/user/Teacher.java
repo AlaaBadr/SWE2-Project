@@ -1,7 +1,7 @@
 package com.edugame.user;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -20,11 +20,11 @@ public class Teacher extends User implements Serializable{
 
 	@OneToMany(mappedBy = "gameOwner")
 	@JsonIgnore
-	private Set<Game> games;
+	private List<Game> games;
 
 	@OneToMany(mappedBy = "courseOwner")
 	@JsonIgnore
-	private Set<Course> courses;
+	private List<Course> courses;
 
 	public Teacher() {
 	}
@@ -34,19 +34,19 @@ public class Teacher extends User implements Serializable{
 		setIdentity("Teacher");
 	}
 
-	public Set<Game> getGames() {
+	public List<Game> getGames() {
 		return games;
 	}
 
-	public void setGames(Set<Game> games) {
+	public void setGames(List<Game> games) {
 		this.games = games;
 	}
 
-	public Set<Course> getCourses() {
+	public List<Course> getCourses() {
 		return courses;
 	}
 
-	public void setCourses(Set<Course> courses) {
+	public void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
 
