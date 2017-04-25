@@ -1,4 +1,31 @@
-
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" [routerLink]="['/home']">Gamers++</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a [routerLink]="['/home']" ><span class="glyphicon glyphicon-home"></span>Home</a></li>
+        </ul>
+        <form class="navbar-form navbar-left">
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a [routerLink]="['/login']" ><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="isTeacher" ><a [routerLink]="['/addcourse']"><span class="glyphicon glyphicon-plus"></span>Add course</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="isTeacher" ><a [routerLink]="['/addgame']"><span class="glyphicon glyphicon-knight"></span>Add Game</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="isStudent"><a [routerLink]="['/enrollIn']"><span class="glyphicon glyphicon-cloud-upload"></span>Join Course</a></li>
+        </ul>
+         <ul class="nav navbar-nav navbar-right">
+            <li><a [routerLink]="['/courses']"><span class="glyphicon glyphicon-book"></span>Courses</a></li>
+        </ul>
+    </div>
+</nav>
+<br><br>
 <div class="col-md-6 col-md-offset-3">
     <h2>Add Game </h2>
     <div>
@@ -58,8 +85,8 @@
             <div class="form-group">
                 <label>Right answer:</label>
                 <div>
-                    <input type="radio" [(ngModel)]="level.rightanswer" (ngModelChange)="level.rightanswer=1" name="rightanswer" [value] =1>True<br>
-                    <input type="radio"  [(ngModel)]="level.rightanswer"  (ngModelChange)="level.rightanswer=2" name="rightanswer" [value]=2>false<br>
+                    <input type="radio" [(ngModel)]="level.rightanswer" (ngModelChange)="level.rightanswer=True" name="rightanswer" [value] ="True">True<br>
+                    <input type="radio"  [(ngModel)]="level.rightanswer"  (ngModelChange)="level.rightanswer=False" name="rightanswer" [value]="False">false<br>
                 </div>
             </div>
             <div class="form-group last">
@@ -101,16 +128,16 @@
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
                 <label>Type of your game:</label>
                 <div>
-                    <input type="radio" [ngModel]="{checked:  level.rightanswer==1}" (ngModelChange)=" level.rightanswer=1" name="ans" value="1">{{choicea}}<br>
+                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choicea}" (ngModelChange)=" level.rightanswer=choicea" name="ans" value="choicea">{{choicea}}<br>
                 </div>
                 <div>
-                    <input type="radio" [ngModel]="{checked:  level.rightanswer==2}" (ngModelChange)=" level.rightanswer=2" name="ans" value="2">{{choiceb}}<br>
+                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choiceb}" (ngModelChange)=" level.rightanswer=choiceb" name="ans" value="choiceb">{{choiceb}}<br>
                 </div>
                 <div>
-                    <input type="radio" [ngModel]="{checked:  level.rightanswer==3}" (ngModelChange)=" level.rightanswer=3" name="ans" value="3">{{choicec}}<br>
+                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choicec}" (ngModelChange)=" level.rightanswer=choicec" name="ans" value="choicec">{{choicec}}<br>
                 </div>
                 <div>
-                    <input type="radio" [ngModel]="{checked:  level.rightanswer==4}" (ngModelChange)=" level.rightanswer=4" name="ans" value="4">{{choiced}}<br>
+                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choiced}" (ngModelChange)=" level.rightanswer=choiced" name="ans" value="choiced">{{choiced}}<br>
                 </div>
             </div>
         </form>
