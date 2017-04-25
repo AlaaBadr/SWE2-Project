@@ -2,7 +2,6 @@ export class Level {
     levelName:string;
     question:string;
     number:number;
-    rightAnswer:number;
+    rightAnswer:String;
     answers:string[];
-    indexes:number[]=[1,2,3,4];
 }

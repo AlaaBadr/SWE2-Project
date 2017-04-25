@@ -27,7 +27,6 @@ export class gameComponent implements OnInit {
     cong = true;
     success = true;
     fail = true;
-    index=0;
     gameName:string;
     isTeacher:boolean=false;
     isStudent:boolean=false;
@@ -42,7 +41,7 @@ export class gameComponent implements OnInit {
         }
        this.getgamesofcourse();
     }
-
+    
     OnClick() {
         if (this.rightanswer == this.game.levels[this.i].rightAnswer) {
             this.i++;

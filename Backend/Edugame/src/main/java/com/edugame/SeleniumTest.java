@@ -1,4 +1,4 @@
-package com.edugame;
+/*package com.edugame;
 
 import java.util.concurrent.TimeUnit;
 
@@ -72,4 +72,4 @@ public class SeleniumTest {
 		//loginTest(driver);
 		//addCourseTest(driver);
 	}
-}
+}*/
