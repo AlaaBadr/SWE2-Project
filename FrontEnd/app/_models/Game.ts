@@ -1,4 +1,4 @@
-import { Level, Teacher, Course } from "./index";
+ import { Level, Teacher, Course } from "./index";
 
 export class Game {
     name: string;

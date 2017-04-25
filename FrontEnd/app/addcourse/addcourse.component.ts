@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CourseService, AlertService } from "../_services/index";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Course, User } from "../_models/index";
@@ -10,7 +10,7 @@ import { Course, User } from "../_models/index";
     
 })
 
-export class addcourseComponent  {
+export class addcourseComponent implements OnInit  {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -18,7 +18,18 @@ export class addcourseComponent  {
         private courseservice:CourseService
         ) { }
     //constructor(private courseservice:CourseService){}
-    
+    isTeacher:boolean=true;
+    isStudent:boolean=true;
+    loggedUser:any;
+    ngOnInit() {
+        this.loggedUser = JSON.parse(localStorage.getItem("currentUser"));
+        if (this.loggedUser.identity == "Teacher") {
+            this.isTeacher = true;
+        }
+        else if (this.loggedUser.identity == "Student") {
+            this.isStudent = true;
+        }
+    }
     course:any={};
     teacherusername=localStorage.getItem('user');
     loading = false;
