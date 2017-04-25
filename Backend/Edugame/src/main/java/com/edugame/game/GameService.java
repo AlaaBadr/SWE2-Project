@@ -63,9 +63,10 @@ public class GameService {
 		return true;
 	}
 
-	public Game getGame(String courseName, String gameName)
+	public Game getGame(String gameName)
 	{
-		return gameRep.findByCourseCourseNameAndName(courseName, gameName);
+		return gameRep.findOne(gameName);
+		//return gameRep.findByCourseCourseNameAndName(courseName, gameName);
 	}
 
 }
