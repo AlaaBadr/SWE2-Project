@@ -21,8 +21,8 @@ import { addgameComponent } from "./addgame/index"; //me4
 import { addcourseComponent } from "./addcourse/index";
 import { homePageComponent } from "./systemHomePage/index";
 import { enrollInComponent } from "./enrollIn/index";
-import { gameComponent } from "./game/index";
 import { coursesComponent } from "./courses/index";
+import { gameComponent } from "./game/index";
 // 
 
 @NgModule({
@@ -42,8 +42,8 @@ import { coursesComponent } from "./courses/index";
         addcourseComponent,
         homePageComponent,
         enrollInComponent,
-        gameComponent,
-        coursesComponent
+        coursesComponent,
+        gameComponent
     
 
     ],
