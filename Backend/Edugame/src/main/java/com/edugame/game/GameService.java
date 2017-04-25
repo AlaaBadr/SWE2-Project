@@ -40,25 +40,11 @@ public class GameService {
 		g.setGameOwner(t);
 		Course c = courseRep.findOne(courseName);
 		g.setCourse(c);
-		ArrayList<Level>levels = (ArrayList<Level>) g.getLevels();
-		if(g.getType().equals("TorF"))
-		{
-			for(Level l: levels)
-			{
-				ArrayList<String> answers = new ArrayList<>();
-				answers.add("True");
-				answers.add("False");
-				l.setAnswers(answers);
-				l.setGame(g);
-			}
-		}
-		else
-		{
-			for(Level l: levels)
-			{
-				l.setGame(g);
-			}
-		}
+//		ArrayList<Level>levels = (ArrayList<Level>) g.getLevels();
+//		for(Level l: levels)
+//		{
+//			l.setGame(g);
+//		}
 		gameRep.save(g);
 		return true;
 	}
