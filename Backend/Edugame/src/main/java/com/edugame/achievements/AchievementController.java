@@ -21,4 +21,13 @@ public class AchievementController {
 		return achievementService.showAchievements(username);
 	}
 	
+	@CrossOrigin()
+	@GetMapping("/edugame/{username}/courses/games/{gameName}/levels/{levelno}")
+	public void addAchievement(@PathVariable("username") String username,
+							   @PathVariable("gameName") String gameName,
+							   @PathVariable("levelno") int levelno)
+	{
+		achievementService.addAchievement(username, gameName, levelno);
+	}
+	
 }
