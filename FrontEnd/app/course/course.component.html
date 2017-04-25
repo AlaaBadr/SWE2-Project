@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+
+    <div class="off-canvas-wrapper">
+        <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+            <div class="callout primary">
+                <div class="row column">
+                    <img src="images/redhat-logo.png" alt="Student" style="width:304px;height:228px;margin-left:160px">
+                    <label style="margin-left:280px">{{course.courseOwner}}</label>
+                    <label style="margin-left:260px">{{course.description}}</label>
+                    <button type="button" class="btn btn-primary btn-lg">Add Game</button>
+                    <button type="button" class="btn btn-primary btn-lg">Enroll</button>
+                </div>
+            </div>
+            <div *ngFor="let game of course.games">
+                <div class="row small-up-2 medium-up-3 large-up-4">
+                    <div class="column">
+                        <img class="thumbnail" src="images/Tic-Tac-Toe-Game-grey.png">
+                        <a>{{game.gamename}}</a><br>
+                        <label>Description: {{game.description}}</label>
+                        <label>No of levels: {{game.nooflevels}}</label>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+
+        </div>
+
+    </div>

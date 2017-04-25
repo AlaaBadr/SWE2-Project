@@ -31,9 +31,9 @@ public class GameController {
 	}
 	
 	@CrossOrigin()
-	@GetMapping("/edugame/courses/{courseName}/games/{gameName}")
-	public Game getGame(@PathVariable("courseName") String courseName, @PathVariable("gameName") String gameName)
+	@GetMapping("/edugame/courses/games/{gameName}")
+	public Game getGame(@PathVariable("gameName") String gameName)
 	{
-		return gameService.getGame(courseName, gameName);
+		return gameService.getGame(gameName);
 	}
 }

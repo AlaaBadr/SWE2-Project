@@ -1,0 +1,39 @@
+<form name="form"  #f="ngForm" role="form" >
+    <div class="form-group" >
+        <label for="Coursename">Coursename</label>
+        <input type="text" class="form-control" name="Coursename" [(ngModel)]="course.courseName" #gamename="ngModel"
+             />
+    </div>
+    <div class="form-group" >
+        <label for="description">Description</label>
+        <input class="form-control" name="description" [(ngModel)]="course.description" #description="ngModel"
+             />
+    </div>
+    <div class="form-group last">
+        <div class="col-sm-offset-3 col-sm-9">
+            <button (click)="addcourse()" type="submit" class="btn btn-success btn-sm">Add Course</button>
+        </div>
+    </div>
+</form>
+
+<style>
+    .panel-default {
+        opacity: 0.9;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    
+    *[role="form"] {
+        opacity: 0.9;
+        max-width: 530px;
+        padding: 35px;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 0.3em;
+    }
+    
+    *[role="form"] h2 {
+        margin-left: 5em;
+        margin-bottom: 1em;
+    }
+</style>
