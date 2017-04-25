@@ -12,7 +12,7 @@ import { GameType } from "../_models/Game";
 })
 
 export class addgameComponent implements OnInit {
-        loading: boolean=true;
+    loading: boolean = true;
 
 
     constructor(
@@ -41,8 +41,18 @@ export class addgameComponent implements OnInit {
     rightanswer: number;
     coursename: string;
     teacher: Teacher = JSON.parse(localStorage.getItem('user'));
+    isTeacher: boolean = true;
+    isStudent: boolean = true;
+    loggedUser: any;
     //function search and add course to game
     ngOnInit() {
+        this.loggedUser = JSON.parse(localStorage.getItem("currentUser"));
+        if (this.loggedUser.identity == "Teacher") {
+            this.isTeacher = true;
+        }
+        else if (this.loggedUser.identity == "Student") {
+            this.isStudent = true;
+        }
         this.courseervice.showCourses().subscribe(data => {
             this.course = data;
             console.log(data)
@@ -95,7 +105,7 @@ export class addgameComponent implements OnInit {
         if (this.counter == this.game.levelno) {
             this.game.levels = this.levels;
             //console.log("course name ", this.game);
-            localStorage.setItem('course',JSON.stringify(this.game.course));
+            localStorage.setItem('course', JSON.stringify(this.game.course));
             this.gservice.addgame(this.teacher.username, this.game.course.courseName, this.game).subscribe(
                 data => {
                     this.router.navigate(['/tfgame']);

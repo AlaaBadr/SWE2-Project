@@ -18,11 +18,11 @@ import { AlertService, AuthenticationService, UserService, achievementService, C
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { addgameComponent } from "./addgame/index"; //me4 
-import { courseComponent } from "./course/index";
-import { tfgameComponent } from "./tfgame/index";
-import { cgameComponent } from "./choicegame/index";
 import { addcourseComponent } from "./addcourse/index";
 import { homePageComponent } from "./systemHomePage/index";
+import { enrollInComponent } from "./enrollIn/index";
+import { gameComponent } from "./game/index";
+import { coursesComponent } from "./courses/index";
 // 
 
 @NgModule({
@@ -39,11 +39,11 @@ import { homePageComponent } from "./systemHomePage/index";
         LoginComponent,
         RegisterComponent,
         addgameComponent,
-        courseComponent,
-        tfgameComponent,
-        cgameComponent,
         addcourseComponent,
-        homePageComponent
+        homePageComponent,
+        enrollInComponent,
+        gameComponent,
+        coursesComponent
     
 
     ],
