@@ -46,7 +46,11 @@ export class CourseService {
     showStudentUnenrolledCourses(username: string) {
         return this.http.get('http://localhost:8080/edugame/unenrolledCourses/' + username, this.setJSONHeaders()).map((response: Response) => response.json());
     }
-
+    enrollStudent(userName:string , courseName:string){
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get('http://localhost:8080/edugame/courses/' + courseName+'/enroll/'+userName, options).map((response: Response) => response.json());
+    }
 
 
 
