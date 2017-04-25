@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -39,6 +40,7 @@ public class CourseController {
 		return courseService.getAllCoursesByStudent(username);
 	}
 	
+	
 	@CrossOrigin()
 	@GetMapping("/edugame/courses/{courseName}")
 	public Course getCourse(@PathVariable("courseName") String name)
@@ -52,11 +54,17 @@ public class CourseController {
 	{
 		return courseService.saveCourse(c, username);
 	}
-	
 	@CrossOrigin()
 	@GetMapping("/edugame/courses/{courseName}/enroll/{studentUsername}")
 	public Boolean enrollStudent(@PathVariable("courseName") String courseName, @PathVariable("studentUsername") String username)
 	{
 		return courseService.enrollStudent(courseName, username);
+	}
+	
+	@CrossOrigin()
+	@GetMapping("/edugame/unenrolledCourses/{studentUsername}")
+	public List<Course> showUnErolledCourses(@PathVariable("studentUsername") String username)
+	{
+		return courseService.getUnEnrolledCourses(username);
 	}
 }

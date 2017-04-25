@@ -33,6 +33,7 @@ public class Course implements Serializable {
 	@Column(name = "courseName")
 	private String courseName;
 
+
 	@ManyToOne
 	@JoinColumn(name = "username")
 	private Teacher courseOwner;
@@ -55,13 +56,20 @@ public class Course implements Serializable {
 	public void setCourseOwner(Teacher courseOwner) {
 		this.courseOwner = courseOwner;
 	}
-
+/*
 	public String getName() {
+		return courseName;
+	}*/
+
+	/*public void setName(String name) {
+		courseName = name;
+	}*/
+	public String getCourseName() {
 		return courseName;
 	}
 
-	public void setName(String name) {
-		courseName = name;
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
 	}
 
 	public String getDescription() {
