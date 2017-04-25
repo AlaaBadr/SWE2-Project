@@ -46,4 +46,7 @@ export class enrollInComponent implements OnInit {
             console.log("teacher courses >>", this.courses);
         });
     }
+    enRoll(courseName:string){
+        this.courseservice.enrollStudent(this.loggedUser.username,courseName)
+    }
 }
