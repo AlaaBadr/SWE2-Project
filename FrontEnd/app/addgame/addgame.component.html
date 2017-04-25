@@ -85,8 +85,9 @@
             <div class="form-group">
                 <label>Right answer:</label>
                 <div>
-                    <input type="radio" [(ngModel)]="level.rightanswer" (ngModelChange)="level.rightanswer=True" name="rightanswer" [value] ="True">True<br>
-                    <input type="radio"  [(ngModel)]="level.rightanswer"  (ngModelChange)="level.rightanswer=False" name="rightanswer" [value]="False">false<br>
+                  
+                    <input type="radio" [ngModel]="{checked: level.rightAnswer == 'True'}" (ngModelChange)="level.rightAnswer='True'" name="rightAnswer" value ="True">True<br>
+                    <input type="radio" [ngModel]="{checked: level.rightAnswer == 'False'}"  (ngModelChange)="level.rightAnswer='False'" name="rightAnswer" value="False">false<br>
                 </div>
             </div>
             <div class="form-group last">

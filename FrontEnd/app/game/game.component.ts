@@ -16,7 +16,7 @@ export class gameComponent implements OnInit {
         private courseervice: CourseService,
         private gservice: GameService) { }
     listOfCourseGames:Game[]=[];
-    rightanswer: number;
+    rightanswer: string;
     question: string;
     temp: number;
     counter = 1;
@@ -31,6 +31,7 @@ export class gameComponent implements OnInit {
     isTeacher:boolean=false;
     isStudent:boolean=false;
     loggedUser:any;
+    answer:string;
     ngOnInit() {
         this.loggedUser = JSON.parse(localStorage.getItem("currentUser"));
         if (this.loggedUser.identity == "Teacher") {
@@ -41,7 +42,6 @@ export class gameComponent implements OnInit {
         }
        this.getgamesofcourse();
     }
-    
     OnClick() {
         if (this.rightanswer == this.game.levels[this.i].rightAnswer) {
             this.i++;
@@ -60,6 +60,9 @@ export class gameComponent implements OnInit {
         if (this.length == this.counter+1) {
             this.cong = false;
         }
+    }
+    choice(answer:any){
+        this.rightanswer==answer;
     }
     getgamesofcourse()
     {

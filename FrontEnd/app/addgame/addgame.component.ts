@@ -19,7 +19,7 @@ export class addgameComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private alertService: AlertService,
-        private courseervice: CourseService,
+        private courseservice: CourseService,
         private gservice: GameService) {
     }
     /*constructor( private gameservice:GameService, private router: Router, private teacherUserName: string) {
@@ -38,12 +38,12 @@ export class addgameComponent implements OnInit {
     mode: string = 'Done!';
     typetf: boolean = true;
     typec: boolean = true;
-    rightanswer: number;
+    rightanswer: string;
     coursename: string;
-    teacher: Teacher = JSON.parse(localStorage.getItem('user'));
     isTeacher: boolean = true;
     isStudent: boolean = true;
     loggedUser: any;
+    done=false;
     //function search and add course to game
     ngOnInit() {
         this.loggedUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -53,7 +53,7 @@ export class addgameComponent implements OnInit {
         else if (this.loggedUser.identity == "Student") {
             this.isStudent = true;
         }
-        this.courseervice.showCourses().subscribe(data => {
+        this.courseservice.showTeacherCourses(this.loggedUser.username).subscribe(data => {
             this.course = data;
             console.log(data)
         });
@@ -80,7 +80,9 @@ export class addgameComponent implements OnInit {
             this.mode = "Done!";
             this.game.levels = [];
         }
-
+        //service funtion
+        this.gservice.addgame(this.loggedUser.username, this.game.course.courseName, this.game).subscribe();
+                
     }
     /*
     addcourse(){
@@ -101,20 +103,17 @@ export class addgameComponent implements OnInit {
         } else {
             this.level.answers = [this.choicea, this.choiceb, this.choicec, this.choiced];
         }
-        this.levels.push(this.level);
+       // this.levels.push(this.level);
+       //service function
+         this.gservice.addLevel(this.game.name,this.level).subscribe();
         if (this.counter == this.game.levelno) {
-            this.game.levels = this.levels;
+           // this.game.levels = this.levels;
             //console.log("course name ", this.game);
+            this.done=true;
             localStorage.setItem('course', JSON.stringify(this.game.course));
-            this.gservice.addgame(this.teacher.username, this.game.course.courseName, this.game).subscribe(
-                data => {
-                    this.router.navigate(['/tfgame']);
-
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
+            this.router.navigate(['/home']);
+            
+            
         }
     }
 }
