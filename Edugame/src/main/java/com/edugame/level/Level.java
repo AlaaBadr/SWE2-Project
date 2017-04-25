@@ -52,20 +52,20 @@ public class Level implements Serializable{
 		this.rightAnswer = RightAnswer;
 	}
 
-	public String getName() {
+	public String getLevelName() {
 		return levelName;
 	}
 
-	public void setName(String name) {
-		levelName = name;
+	public void setLevelName(String levelName) {
+		this.levelName = levelName;
 	}
 
 	public String getQuestion() {
 		return question;
 	}
 
-	public void setQuestion(String Question) {
-		this.question = Question;
+	public void setQuestion(String question) {
+		this.question = question;
 	}
 
 	public int getNumber() {
@@ -80,8 +80,8 @@ public class Level implements Serializable{
 		return rightAnswer;
 	}
 
-	public void setRightAnswer(int RightAnswer) {
-		this.rightAnswer = RightAnswer;
+	public void setRightAnswer(int rightAnswer) {
+		this.rightAnswer = rightAnswer;
 	}
 
 	public Game getGame() {
@@ -92,12 +92,14 @@ public class Level implements Serializable{
 		this.game = game;
 	}
 
-	public List<String> getAnswers() {
+	public ArrayList<String> getAnswers() {
 		return answers;
 	}
 
 	public void setAnswers(ArrayList<String> answers) {
 		this.answers = answers;
 	}
+	
 
+	
 }

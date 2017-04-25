@@ -1,5 +1,6 @@
 package com.edugame.course;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.edugame.user.Student;
@@ -40,9 +41,10 @@ public class CourseService {
 		return courseRep.findOne(name);
 	}
 	
+	/**/
 	public Course saveCourse(Course c, String username)
 	{
-		if(courseRep.findOne(c.getName()) != null)
+		if(courseRep.findOne(c.getCourseName()) != null)
 			return null;
 		Teacher t = teacherRep.findByUsername(username);
 		c.setCourseOwner(t);
@@ -62,5 +64,18 @@ public class CourseService {
 		students.add(s);
 		courseRep.save(c);
 		return true;
+	}
+	
+	public List<Course> getUnEnrolledCourses(String username){
+		List<Course> unenrolledCourses = new ArrayList<Course>();
+		List<Course> allCourses = (List<Course>) courseRep.findAll();
+		List<Course> enrolledCourses = getAllCoursesByStudent(username);
+		for(Course course : allCourses ){
+			if(! enrolledCourses.contains(course)){
+				unenrolledCourses.add(course);
+			}
+		}
+		
+		return unenrolledCourses;
 	}
 }
