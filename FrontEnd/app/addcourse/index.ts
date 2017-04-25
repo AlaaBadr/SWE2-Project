@@ -1,0 +1,1 @@
+export * from './addcourse.component';
