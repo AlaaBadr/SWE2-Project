@@ -28,6 +28,7 @@ public class LevelController {
 		return levelService.getLevels(gameName);
 	}
 	
+	/*
 	@CrossOrigin()
 	@GetMapping("/edugame/checkAnswer/{username}/{gameName}/{levelno}/{rightAnswer}")
 	public Boolean addAchievement(@PathVariable("username") String username,
@@ -37,4 +38,5 @@ public class LevelController {
 	{
 		return levelService.checkAnswer(username, gameName, levelno, rightAnswer);
 	}
+	*/
 }

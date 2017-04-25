@@ -2,7 +2,6 @@ package com.edugame.level;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +32,7 @@ public class Level implements Serializable{
 	private int number;
 
 	@Column(name = "rightAnswer")
-	private int rightAnswer;
+	private String rightAnswer;
 
 	@ManyToOne
 	@JoinColumn(name = "name")
@@ -46,7 +45,7 @@ public class Level implements Serializable{
 	public Level() {
 	}
 
-	public Level(String name, String Question, int RightAnswer) {
+	public Level(String name, String Question, String RightAnswer) {
 		levelName = name;
 		this.question = Question;
 		this.rightAnswer = RightAnswer;
@@ -76,11 +75,11 @@ public class Level implements Serializable{
 		this.number = number;
 	}
 
-	public int getRightAnswer() {
+	public String getRightAnswer() {
 		return rightAnswer;
 	}
 
-	public void setRightAnswer(int rightAnswer) {
+	public void setRightAnswer(String rightAnswer) {
 		this.rightAnswer = rightAnswer;
 	}
 
