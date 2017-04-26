@@ -39,7 +39,7 @@ export class addcourseComponent implements OnInit  {
         //,this.user.username
        this.courseservice.saveCourse(this.loggedUser.username,this.course).subscribe(
                 data => { 
-                    this.router.navigate(['/login']);
+                    this.router.navigate(['/home']);
                     
                 },
                 error => {
