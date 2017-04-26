@@ -17,7 +17,7 @@ export class tfgameComponent implements OnInit {
         private courseervice: CourseService,
         private gservice: GameService) { }
     listOfCourseGames:Game[]=[];
-    rightanswer: number;
+    rightanswer: string;
     question: string;
     temp: number;
     counter = 1;
