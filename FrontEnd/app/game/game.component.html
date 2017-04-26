@@ -26,6 +26,14 @@
     </div>
 </nav>
 <br><br>
+<div style="padding-top:auto;">
+    <div [hidden]="success" class="alert alert-success">
+        <strong>Success!</strong> a7sant yabni walahy .
+    </div>
+    <div [hidden]="fail" class="alert alert-danger">
+        <strong>Fail!</strong> ya faaaaaaaaaaaaaaaaaashel .
+    </div>
+</div>
 <ul>
     <li *ngFor="let level of game?.levels">
         <div [hidden]="counter!=level.number">
@@ -42,7 +50,7 @@
                             <ul>
                                 <li *ngFor="let answer of level.answers">
                                     <label class="radio-inline">
-                                         <input name="dd"  [ngModel]="rightanswer" type="radio" id="fRadio" value="">{{answer}}
+                                         <input name="dd" value='False' (change)="choice($event.target.value)"  type="radio"  >{{answer}}
                                     </label>
                                 </li>
                             </ul>

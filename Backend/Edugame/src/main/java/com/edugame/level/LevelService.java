@@ -5,11 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.edugame.game.GameRepository;
+
 @Service
 public class LevelService {
 
 	@Autowired
 	private LevelRepository levelRep;
+	
+	@Autowired
+	private GameRepository gameRep;
 			
 	public LevelService(){
 	}
@@ -22,6 +27,15 @@ public class LevelService {
 	public List<Level> getLevels(String gameName)
 	{
 		return levelRep.findAllByGameName(gameName);
+	}
+	
+	public Boolean addLevel(Level l, String gameName)
+	{
+		if(levelRep.findOne(l.getLevelName()) != null)
+			return false;
+		l.setGame(gameRep.findOne(gameName));
+		levelRep.save(l);
+		return true;
 	}
 	
 	/*

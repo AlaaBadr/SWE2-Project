@@ -4,23 +4,23 @@
             <a class="navbar-brand" [routerLink]="['/home']">Gamers++</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <li><a [routerLink]="['/home']" ><span class="glyphicon glyphicon-home"></span>Home</a></li>
+            <li><a [routerLink]="['/home']"><span class="glyphicon glyphicon-home"></span>Home</a></li>
         </ul>
         <form class="navbar-form navbar-left">
         </form>
         <ul class="nav navbar-nav navbar-right">
-            <li><a [routerLink]="['/login']" ><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+            <li><a [routerLink]="['/login']"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li *ngIf="isTeacher" ><a [routerLink]="['/addcourse']"><span class="glyphicon glyphicon-plus"></span>Add course</a></li>
+            <li *ngIf="isTeacher"><a [routerLink]="['/addcourse']"><span class="glyphicon glyphicon-plus"></span>Add course</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li *ngIf="isTeacher" ><a [routerLink]="['/addgame']"><span class="glyphicon glyphicon-knight"></span>Add Game</a></li>
+            <li *ngIf="isTeacher"><a [routerLink]="['/addgame']"><span class="glyphicon glyphicon-knight"></span>Add Game</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li *ngIf="isStudent"><a [routerLink]="['/enrollIn']"><span class="glyphicon glyphicon-cloud-upload"></span>Join Course</a></li>
         </ul>
-         <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right">
             <li><a [routerLink]="['/courses']"><span class="glyphicon glyphicon-book"></span>Courses</a></li>
         </ul>
     </div>
@@ -30,23 +30,20 @@
     <h2>Add Game </h2>
     <div>
         <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" role="form" novalidate>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !gamename.valid }">
+            <div class="form-group" >
                 <label for="gamename">Game name</label>
                 <input [disabled]="mode=='Edit!'" type="text" class="form-control" name="gamename" [(ngModel)]="game.name" #gamename="ngModel"
                     required />
-                <div *ngIf="f.submitted && !gamename.valid" class="help-block">Game name is required</div>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
+            <div class="form-group">
                 <label for="description">Description</label>
                 <input [disabled]="mode=='Edit!'" class="form-control" name="description" [(ngModel)]="game.description" #description="ngModel"
                     required />
-                <div *ngIf="f.submitted && !description.valid" class="help-block">description is required</div>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !levelno.valid }">
+            <div class="form-group" >
                 <label for="levelno">No of levels</label>
                 <input [disabled]="mode=='Edit!'" type="number" class="form-control" min="1" name="levelno" [(ngModel)]="game.levelno" #levelno="ngModel"
                     required/>
-                <div *ngIf="f.submitted && !levelno.valid" class="help-block">No of levels is required</div>
             </div>
             <label>Courses :</label>
             <select [(ngModel)]="game.course" name="coursesList" [disabled]="mode=='Edit!'" required>
@@ -72,21 +69,23 @@
     <!-- true-false game -->
     <div [hidden]="typetf">
         <form name="form" (ngSubmit)="f.form.valid" role="form" #f="ngForm" novalidate>
-             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !levelname.valid }">
+            <div class="form-group" >
                 <label for="levelname">Level Name</label>
                 <input type="text" class="form-control" name="levelname" [(ngModel)]="level.levelName" #question="ngModel" required />
-                <div *ngIf="f.submitted && !levelname.valid" class="help-block">level name is required</div>
+
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !question.valid }">
+            <div class="form-group" >
                 <label for="question">Question</label>
                 <input type="text" class="form-control" name="question" [(ngModel)]="level.question" #question="ngModel" required />
-                <div *ngIf="f.submitted && !question.valid" class="help-block">Question is required</div>
             </div>
             <div class="form-group">
                 <label>Right answer:</label>
                 <div>
-                    <input type="radio" [(ngModel)]="level.rightanswer" (ngModelChange)="level.rightanswer=True" name="rightanswer" [value] ="True">True<br>
-                    <input type="radio"  [(ngModel)]="level.rightanswer"  (ngModelChange)="level.rightanswer=False" name="rightanswer" [value]="False">false<br>
+
+                    <input type="radio" [ngModel]="{checked: level.rightAnswer == 'True'}" (ngModelChange)="level.rightAnswer='True'" name="rightAnswer"
+                        value="True">True<br>
+                    <input type="radio" [ngModel]="{checked: level.rightAnswer == 'False'}" (ngModelChange)="level.rightAnswer='False'" name="rightAnswer"
+                        value="False">false<br>
                 </div>
             </div>
             <div class="form-group last">
@@ -99,45 +98,53 @@
     <!-- choice game -->
     <div [hidden]="typec">
         <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" role="form" novalidate>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !question.valid }">
+            <div class="form-group">
+                <label for="levelname">Level Name</label>
+                <input type="text" class="form-control" name="levelname" [(ngModel)]="level.levelName" #question="ngModel" required />
+            </div>
+            <div class="form-group" >
                 <label for="question">Question</label>
                 <input type="text" class="form-control" name="question" [(ngModel)]="level.question" #question="ngModel" required />
-                <div *ngIf="f.submitted && !question.valid" class="help-block">Answer is required</div>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !choice1.valid }">
+            <div class="form-group" >
                 <label for="choice1">Choice 1</label>
                 <input type="text" class="form-control" name="choice1" [(ngModel)]="choicea" #choice1="ngModel" required />
-                <div *ngIf="f.submitted && !choice1.valid" class="help-block">Answer is required</div>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !choice2.valid }">
+            <div class="form-group" >
                 <label for="choice2">Choice 2</label>
                 <input type="text" class="form-control" name="choice1" [(ngModel)]="choiceb" #choice2="ngModel" required />
-                <div *ngIf="f.submitted && !choice2.valid" class="help-block">Answer is required</div>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !choice3.valid }">
+            <div class="form-group" >
                 <label for="choice3">Choice 3</label>
                 <input type="text" class="form-control" name="choice3" [(ngModel)]="choicec" #choice3="ngModel" required />
-                <div *ngIf="f.submitted && !choice3.valid" class="help-block">Answer is required</div>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !choice4.valid }">
+            <div class="form-group" >
                 <label for="choice4">Choice 4</label>
                 <input type="text" class="form-control" name="choice4" [(ngModel)]="choiced" #choice4="ngModel" required />
-                <div *ngIf="f.submitted && !choice4.valid" class="help-block">Answer is required</div>
             </div>
             <label>Right answer </label>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <div class="form-group" >
                 <label>Type of your game:</label>
                 <div>
-                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choicea}" (ngModelChange)=" level.rightanswer=choicea" name="ans" value="choicea">{{choicea}}<br>
+                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choicea}" (ngModelChange)=" level.rightanswer=choicea" name="ans"
+                        value={{choicea}}>{{choicea}}<br>
                 </div>
                 <div>
-                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choiceb}" (ngModelChange)=" level.rightanswer=choiceb" name="ans" value="choiceb">{{choiceb}}<br>
+                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choiceb}" (ngModelChange)=" level.rightanswer=choiceb" name="ans"
+                        value={{choiceb}}>{{choiceb}}<br>
                 </div>
                 <div>
-                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choicec}" (ngModelChange)=" level.rightanswer=choicec" name="ans" value="choicec">{{choicec}}<br>
+                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choicec}" (ngModelChange)=" level.rightanswer=choicec" name="ans"
+                        value={{choicec}}>{{choicec}}<br>
                 </div>
                 <div>
-                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choiced}" (ngModelChange)=" level.rightanswer=choiced" name="ans" value="choiced">{{choiced}}<br>
+                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choiced}" (ngModelChange)=" level.rightanswer=choiced" name="ans"
+                        value={{choiced}}>{{choiced}}<br>
+                </div>
+            </div>
+            <div class="form-group last">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button (click)="levelsEnd()" [disabled]="counter == game.levelno" type="submit" class="btn btn-success btn-sm">Next level</button>
                 </div>
             </div>
         </form>

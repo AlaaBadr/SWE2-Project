@@ -98,7 +98,7 @@ public class Level implements Serializable{
 	public void setAnswers(ArrayList<String> answers) {
 		this.answers = answers;
 	}
-	
+
 
 	
 }

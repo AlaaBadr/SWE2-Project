@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Teacher, Course, Achievement } from "../_models/index";
+import { Teacher, Course, Achievement, Game } from "../_models/index";
 import { CourseService } from "../_services/index";
 import { achievementService, AlertService } from "../_services/index";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -26,6 +26,7 @@ export class homePageComponent {
     isStudent: boolean = false;
     isTeacher: boolean = false;
     ach:Achievement[]=[];
+    game:Game;
     ngOnInit() {
 
         this.loggedUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -45,6 +46,7 @@ export class homePageComponent {
     onClick(gameName:string){
         localStorage.setItem('gameName',gameName); 
         this.router.navigate(['/game']);
+        
     }
     getStudentUnenrolledCoursesList() {
         this.courseservice.showStudentUnenrolledCourses(this.loggedUser.username).subscribe(data => {

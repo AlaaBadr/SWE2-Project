@@ -4,11 +4,13 @@ import { LoginComponent    } from './login/index';
 import { RegisterComponent } from './register/index';
 import { AuthGuard         } from './_guards/index';
 import { addgameComponent  } from "./addgame/index";
-import { gameComponent     } from "./game/index";
 import { addcourseComponent } from "./addcourse/index";
 import { homePageComponent } from "./systemHomePage/index";
 import { enrollInComponent } from "./enrollIn/index";
 import { coursesComponent } from "./courses/index";
+import { gameComponent } from "./game/index";
+
+
 
 
 
@@ -17,10 +19,10 @@ const appRoutes: Routes = [
     { path: 'login'    , component: LoginComponent  },
     { path: 'register' , component: RegisterComponent },
     { path: 'addgame'  , component:addgameComponent  },
-    { path: 'game'    , component:gameComponent },
     { path: 'addcourse', component:addcourseComponent },
     { path: 'enrollIn', component:enrollInComponent },
     { path: 'courses', component:coursesComponent },
+    { path: 'game', component:gameComponent },
     // otherwise redirect to home
     { path: '**', redirectTo: 'login' }
 ];

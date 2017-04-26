@@ -65,12 +65,21 @@ public class Game implements Serializable {
 		this.levelno = Levelno;
 	}
 
+
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getType() {
@@ -89,14 +98,6 @@ public class Game implements Serializable {
 		this.levels = levels;
 	}
 
-	public int getLevelno() {
-		return levelno;
-	}
-
-	public void setLevelno(int levelno) {
-		this.levelno = levelno;
-	}
-
 	public List<Achievement> getAchievements() {
 		return achievements;
 	}
@@ -113,20 +114,20 @@ public class Game implements Serializable {
 		this.gameOwner = gameOwner;
 	}
 
+	public int getLevelno() {
+		return levelno;
+	}
+
+	public void setLevelno(int levelno) {
+		this.levelno = levelno;
+	}
+
 	public Course getCourse() {
 		return course;
 	}
 
 	public void setCourse(Course course) {
 		this.course = course;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	@Override

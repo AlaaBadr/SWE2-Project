@@ -31,15 +31,13 @@ export class addcourseComponent implements OnInit  {
         }
     }
     course:any={};
-    teacherusername=localStorage.getItem('user');
     loading = false;
-    user:User=JSON.parse(localStorage.getItem('user'));
     addcourse(){
         this.loading = true;
        // this.course.courseOwner=this.user.username;
         //debugger;
         //,this.user.username
-       this.courseservice.saveCourse(this.user.username,this.course).subscribe(
+       this.courseservice.saveCourse(this.loggedUser.username,this.course).subscribe(
                 data => { 
                     this.router.navigate(['/login']);
                     
