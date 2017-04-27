@@ -29,17 +29,17 @@
 <form name="form"  #f="ngForm" role="form" >
     <div class="form-group" >
         <label for="Coursename">Coursename</label>
-        <input type="text" class="form-control" name="Coursename" [(ngModel)]="course.courseName" #gamename="ngModel"
+        <input type="text" id="courseName" class="form-control" name="Coursename" [(ngModel)]="course.courseName" #gamename="ngModel"
              />
     </div>
     <div class="form-group" >
         <label for="description">Description</label>
-        <input class="form-control" name="description" [(ngModel)]="course.description" #description="ngModel"
+        <input type="text" id="description" class="form-control" name="description" [(ngModel)]="course.description" #description="ngModel"
              />
     </div>
     <div class="form-group last">
         <div class="col-sm-offset-3 col-sm-9">
-            <button (click)="addcourse()" type="submit" class="btn btn-success btn-sm">Add Course</button>
+            <button (click)="addcourse()" id="add" type="submit" class="btn btn-success btn-sm">Add Course</button>
         </div>
     </div>
 </form>
