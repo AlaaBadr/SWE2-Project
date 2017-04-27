@@ -11,6 +11,11 @@ export class achievementService {
     showAchievements(studentusername:string){
         return this.http.get(this.url+'/edugame/achievements/'+studentusername).map((response: Response) => response.json());
     }
+    addAchievement(username:string,gameName:string,levelno:number){
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get(this.url + '/edugame/' + username + '/courses/games/' + gameName + '/levels/'+levelno, options).map(function (response) { return response.json(); });
+    }
     // private helper methods
 
     /*private jwt() {

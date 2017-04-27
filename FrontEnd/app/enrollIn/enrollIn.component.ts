@@ -47,6 +47,8 @@ export class enrollInComponent implements OnInit {
         });
     }
     enRoll(courseName:string){
-        this.courseservice.enrollStudent(this.loggedUser.username,courseName)
+        this.courseservice.enrollStudent(this.loggedUser.username,courseName).subscribe(data => {
+            this.router.navigate(['/home']);
+        });
     }
 }

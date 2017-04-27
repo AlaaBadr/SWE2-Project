@@ -29,8 +29,8 @@
 <div class="col-md-6 col-md-offset-3">
     <h2>Add Game </h2>
     <div>
-        <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" role="form" novalidate>
-            <div class="form-group" >
+        <form name="form"  #f="ngForm" role="form">
+            <div class="form-group">
                 <label for="gamename">Game name</label>
                 <input [disabled]="mode=='Edit!'" type="text" class="form-control" name="gamename" [(ngModel)]="game.name" #gamename="ngModel"
                     required />
@@ -40,7 +40,7 @@
                 <input [disabled]="mode=='Edit!'" class="form-control" name="description" [(ngModel)]="game.description" #description="ngModel"
                     required />
             </div>
-            <div class="form-group" >
+            <div class="form-group">
                 <label for="levelno">No of levels</label>
                 <input [disabled]="mode=='Edit!'" type="number" class="form-control" min="1" name="levelno" [(ngModel)]="game.levelno" #levelno="ngModel"
                     required/>
@@ -69,12 +69,12 @@
     <!-- true-false game -->
     <div [hidden]="typetf">
         <form name="form" (ngSubmit)="f.form.valid" role="form" #f="ngForm" novalidate>
-            <div class="form-group" >
+            <div class="form-group">
                 <label for="levelname">Level Name</label>
                 <input type="text" class="form-control" name="levelname" [(ngModel)]="level.levelName" #question="ngModel" required />
 
             </div>
-            <div class="form-group" >
+            <div class="form-group">
                 <label for="question">Question</label>
                 <input type="text" class="form-control" name="question" [(ngModel)]="level.question" #question="ngModel" required />
             </div>
@@ -102,44 +102,40 @@
                 <label for="levelname">Level Name</label>
                 <input type="text" class="form-control" name="levelname" [(ngModel)]="level.levelName" #question="ngModel" required />
             </div>
-            <div class="form-group" >
+            <div class="form-group">
                 <label for="question">Question</label>
                 <input type="text" class="form-control" name="question" [(ngModel)]="level.question" #question="ngModel" required />
             </div>
-            <div class="form-group" >
+            <div class="form-group">
                 <label for="choice1">Choice 1</label>
                 <input type="text" class="form-control" name="choice1" [(ngModel)]="choicea" #choice1="ngModel" required />
             </div>
-            <div class="form-group" >
+            <div class="form-group">
                 <label for="choice2">Choice 2</label>
-                <input type="text" class="form-control" name="choice1" [(ngModel)]="choiceb" #choice2="ngModel" required />
+                <input type="text" class="form-control" name="choice2" [(ngModel)]="choiceb" #choice2="ngModel" required />
             </div>
-            <div class="form-group" >
+            <div class="form-group">
                 <label for="choice3">Choice 3</label>
                 <input type="text" class="form-control" name="choice3" [(ngModel)]="choicec" #choice3="ngModel" required />
             </div>
-            <div class="form-group" >
+            <div class="form-group">
                 <label for="choice4">Choice 4</label>
                 <input type="text" class="form-control" name="choice4" [(ngModel)]="choiced" #choice4="ngModel" required />
             </div>
             <label>Right answer </label>
-            <div class="form-group" >
+            <div class="form-group">
                 <label>Type of your game:</label>
                 <div>
-                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choicea}" (ngModelChange)=" level.rightanswer=choicea" name="ans"
-                        value={{choicea}}>{{choicea}}<br>
+                    <input type="radio" [checked]="idx === 0" (change)="getright(choicea)"  name="ans" [value]="choicea">{{choicea}}<br>
                 </div>
                 <div>
-                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choiceb}" (ngModelChange)=" level.rightanswer=choiceb" name="ans"
-                        value={{choiceb}}>{{choiceb}}<br>
+                    <input type="radio"  [checked]="idx === 0" (change)="getright(choiceb)" name="ans" [value]="choiceb">{{choiceb}}<br>
                 </div>
                 <div>
-                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choicec}" (ngModelChange)=" level.rightanswer=choicec" name="ans"
-                        value={{choicec}}>{{choicec}}<br>
+                    <input type="radio"  [checked]="idx === 0" (change)="getright(choicec)" name="ans" [value]="choicec">{{choicec}}<br>
                 </div>
                 <div>
-                    <input type="radio" [ngModel]="{checked:  level.rightanswer==choiced}" (ngModelChange)=" level.rightanswer=choiced" name="ans"
-                        value={{choiced}}>{{choiced}}<br>
+                    <input type="radio"  [checked]="idx === 0" (change)="getright(choiced)" name="ans" [value]="choiced">{{choiced}}<br>
                 </div>
             </div>
             <div class="form-group last">
