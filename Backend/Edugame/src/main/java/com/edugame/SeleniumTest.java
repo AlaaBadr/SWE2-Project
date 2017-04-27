@@ -10,11 +10,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import junit.framework.Assert;
+
 public class SeleniumTest {
 
 	public static void registerTest(WebDriver driver)
 	{
-		driver.get("http://localhost:3000/register");
+		String current = "http://localhost:3000/register";
+		
+		driver.get(current);
 		
 		WebDriverWait wait = new WebDriverWait(driver, 60);// 1 minute 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fullname")));
@@ -30,6 +34,11 @@ public class SeleniumTest {
 		driver.findElement(By.id("student")).click();
 		
 		driver.findElement(By.id("register")).click();
+		
+		String actual = driver.getCurrentUrl();
+		String expected = "http://localhost:3000/login";
+		
+		Assert.assertEquals(expected, actual);
 	}
 	
 	public static void loginTest(WebDriver driver)
