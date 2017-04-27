@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Level, Game, Teacher, Course } from "../_models/index";
 import { AlertService, GameService, CourseService, } from '../_services/index';
@@ -20,7 +20,7 @@ export class addgameComponent implements OnInit {
         private router: Router,
         private alertService: AlertService,
         private courseservice: CourseService,
-        private gservice: GameService) {
+        private gservice: GameService) {   
     }
     /*constructor( private gameservice:GameService, private router: Router, private teacherUserName: string) {
          this.game.gameOwner = teacherUserName;
@@ -29,7 +29,7 @@ export class addgameComponent implements OnInit {
     game: Game = new Game();
     levels: Level[] = [];
     level: any = {};
-    choicea: string = "";
+    choicea: string ;
     choiceb: string;
     choicec: string;
     choiced: string;
@@ -38,13 +38,17 @@ export class addgameComponent implements OnInit {
     mode: string = 'Done!';
     typetf: boolean = true;
     typec: boolean = true;
-    rightanswer: string;
+    @Input() rightanswer: string;
     coursename: string;
     isTeacher: boolean = true;
     isStudent: boolean = true;
     loggedUser: any;
     done=false;
     //function search and add course to game
+    getright(value:any){
+        this.level.rightAnswer=value;
+        console.log("value  ",value, "right ",this.level.rightAnswer);
+    }
     ngOnInit() {
         this.loggedUser = JSON.parse(localStorage.getItem("currentUser"));
         if (this.loggedUser.identity == "Teacher") {
