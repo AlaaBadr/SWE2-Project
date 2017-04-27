@@ -43,9 +43,10 @@
         </div>
     </div>
 </div>
-<div *ngIf="isStudent"  class="topright" >
-    <h1>Achievemts</h1>
+<div *ngIf="isStudent" style="float:left">
+    <h1>Achievments</h1>
     <li *ngFor="let x of ach">
-        <h4>{{x.gameinAch.name}}</h4><pre>{{x.score}}</pre>
+        <h4>{{x.gameinAch.name}}</h4>
+        <pre>{{x.score}}</pre>
     </li>
 </div>

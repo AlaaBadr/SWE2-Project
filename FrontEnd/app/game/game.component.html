@@ -34,7 +34,7 @@
         <strong>Fail!</strong> ya faaaaaaaaaaaaaaaaaashel .
     </div>
 </div>
-<ul>
+<ul *ngIf="!gameOver">
     <li *ngFor="let level of game?.levels">
         <div [hidden]="counter!=level.number">
             <div class="form-group">
@@ -50,7 +50,7 @@
                             <ul>
                                 <li *ngFor="let answer of level.answers">
                                     <label class="radio-inline">
-                                         <input name="dd" value='False' (change)="choice($event.target.value)"  type="radio"  >{{answer}}
+                                        <input type="radio"  [checked]="idx === 0" (change)="getright(answer)"  name="ans" [value]="answer">{{answer}}
                                     </label>
                                 </li>
                             </ul>
@@ -58,9 +58,13 @@
                     </div>
                 </div>
             </div>
+            <label>60 sec to finish this GAME :D : {{ticks}} </label>
             <div class="col-sm-9 col-sm-offset-3">
                 <button (click)="OnClick()" type="submit" class="btn btn-primary btn-block">Submit</button>
             </div>
         </div>
     </li>
 </ul>
+<div *ngIf="gameOver">
+   <h1> Game Over </h1>
+</div>
