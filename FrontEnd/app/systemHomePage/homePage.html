@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" [routerLink]="['/home']">Gamers++</a>
+            <a class="navbar-brand" id="gamers" [routerLink]="['/home']">Gamers++</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li><a [routerLink]="['/home']"><span class="glyphicon glyphicon-home"></span>Home</a></li>
@@ -43,7 +43,7 @@
         </div>
     </div>
 </div>
-<div *ngIf="isStudent" style="float:left">
+<div *ngIf="isStudent" style="float:left" class="ach-list">
     <h1>Achievments</h1>
     <li *ngFor="let x of ach">
         <h4>{{x.gameinAch.name}}</h4>
