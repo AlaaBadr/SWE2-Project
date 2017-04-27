@@ -31,7 +31,6 @@ public class AchievementService {
 			Achievement tmp = new Achievement(0, studentRep.findByUsername(username), gameRep.findOne(gameName));
 			achRep.save(tmp);
 		}
-		
 		if(levelno*100 <= achRep.findOne(achId).getScore())
 			return;
 		Achievement ach = new Achievement(levelno*100, studentRep.findByUsername(username), gameRep.findOne(gameName));
@@ -40,7 +39,7 @@ public class AchievementService {
 
 	public List<Achievement> showAchievements(String username)
 	{
-		return (List<Achievement>) achRep.findAll();
+		return achRep.findByStudentUsername(username);
 	}
 
 }
