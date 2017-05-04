@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.edugame.course.Course;
 import com.edugame.course.CourseRepository;
 import com.edugame.level.Level;
+import com.edugame.notification.NotificationService;
 import com.edugame.user.Teacher;
 import com.edugame.user.TeacherRepository;
 
@@ -23,6 +24,9 @@ public class GameService {
 	
 	@Autowired
 	private TeacherRepository teacherRep;
+	
+	@Autowired
+	private NotificationService notificationService;
 		
 	public GameService(){
 	}
@@ -46,6 +50,7 @@ public class GameService {
 //			l.setGame(g);
 //		}
 		gameRep.save(g);
+		notificationService.addGameNotification(courseName, g.getName());
 		return true;
 	}
 

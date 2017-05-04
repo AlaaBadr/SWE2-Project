@@ -8,11 +8,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.edugame.achievements.Achievement;
+import com.edugame.comment.Comment;
 import com.edugame.course.Course;
 import com.edugame.level.Level;
 import com.edugame.user.Teacher;
@@ -46,6 +49,10 @@ public class Game implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "username")
 	private Teacher gameOwner;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "gameCollaborators", joinColumns = @JoinColumn(name = "gameName", referencedColumnName = "name"), inverseJoinColumns = @JoinColumn(name = "TeacherUsername", referencedColumnName = "username"))
+	private List<Teacher> gameCollaborators;
 
 	@Column(name = "levelno")
 	private int levelno;
@@ -53,6 +60,9 @@ public class Game implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "courseName")
 	private Course course;
+	
+	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
+	private List<Comment> comments;
 
 	public Game() {
 
@@ -128,6 +138,14 @@ public class Game implements Serializable {
 
 	public void setCourse(Course course) {
 		this.course = course;
+	}
+	
+	public List<Teacher> getGameCollaborators() {
+		return gameCollaborators;
+	}
+
+	public void setGameCollaborators(List<Teacher> gameCollaborators) {
+		this.gameCollaborators = gameCollaborators;
 	}
 
 	@Override
