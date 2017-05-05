@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edugame.course.Course;
+import com.edugame.game.Game;
 
 @RestController
 public class UserController {
@@ -40,7 +41,10 @@ public class UserController {
 		return userService.register(s);
 	}
 	
-	
-	
-	
+	@CrossOrigin()
+	@GetMapping("/edugame/collaborator/{username}/games")
+	public List<Game> getGamesForCollaborators(@PathVariable("username") String username)
+	{
+		return userService.getGamesForCollaborators(username);
+	}
 }

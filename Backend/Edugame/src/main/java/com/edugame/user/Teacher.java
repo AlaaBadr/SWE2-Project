@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.edugame.course.Course;
@@ -18,6 +19,9 @@ public class Teacher extends User implements Serializable{
 	 */
 	private static final long serialVersionUID = 9196215730328920623L;
 
+	@ManyToMany(mappedBy = "gameCollaborators")
+	private List<Game> collaboratedGames;
+	
 	@OneToMany(mappedBy = "gameOwner")
 	@JsonIgnore
 	private List<Game> games;
@@ -48,6 +52,14 @@ public class Teacher extends User implements Serializable{
 
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
+	}
+
+	public List<Game> getCollaboratedGames() {
+		return collaboratedGames;
+	}
+
+	public void setCollaboratedGames(List<Game> collaboratedGames) {
+		this.collaboratedGames = collaboratedGames;
 	}
 
 }

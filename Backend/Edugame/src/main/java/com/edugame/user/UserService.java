@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edugame.course.Course;
+import com.edugame.game.Game;
 
 @Service
 public class UserService {
@@ -56,6 +57,12 @@ public class UserService {
 			return u;
 		}
 		return null;
+	}
+	
+	public List<Game> getGamesForCollaborators(String username)
+	{
+		Teacher t = teacherRep.findByUsername(username);
+		return t.getCollaboratedGames();
 	}
 	
 }
