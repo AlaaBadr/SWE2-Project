@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.edugame.user.Teacher;
+
 @RestController
 public class GameController {
 	
@@ -18,9 +20,19 @@ public class GameController {
 	
 	@CrossOrigin()
 	@GetMapping("/edugame/courses/{courseName}/games")
-	public List<Game> getGamesOfCourse(@PathVariable String courseName)
+	public List<Game> getGamesOfCourse(@PathVariable("courseName") String courseName)
 	{
-		return gameService.getGamesOfCourse(courseName);
+		List<Game> result = gameService.getGamesOfCourse(courseName);
+		for(Game g: result)
+		{
+			Teacher t = new Teacher();
+			t.setUsername(g.getGameOwner().getUsername());
+			g.setGameOwner(t);
+			g.setGameCollaborators(null);
+			g.getCourse().setCourseOwner(t);
+			g.getCourse().setStudents(null);
+		}
+		return result;
 	}
 	
 	@CrossOrigin()
@@ -34,6 +46,20 @@ public class GameController {
 	@GetMapping("/edugame/courses/games/{gameName}")
 	public Game getGame(@PathVariable("gameName") String gameName)
 	{
-		return gameService.getGame(gameName);
+		Game g = gameService.getGame(gameName);
+		Teacher t = new Teacher();
+		t.setUsername(g.getGameOwner().getUsername());
+		g.setGameOwner(t);
+		g.setGameCollaborators(null);
+		g.getCourse().setCourseOwner(t);
+		g.getCourse().setStudents(null);
+		return g;
+	}
+	
+	@CrossOrigin()
+	@GetMapping("/edugame/courses/games/{gameName}/addCollaborator/{username}")
+	public Boolean addCollaborator(@PathVariable("gameName") String gameName, @PathVariable("username") String username)
+	{
+		return gameService.addCollaborator(gameName, username);
 	}
 }

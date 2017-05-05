@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.edugame.user.Teacher;
+
 @RestController
 public class CourseController {
 	
@@ -23,21 +25,45 @@ public class CourseController {
 	@GetMapping("/edugame/courses")
 	public List<Course> showCourses()
 	{
-		return courseService.getAllCourses();
+		List<Course> result = courseService.getAllCourses();
+		for( Course c : result)
+		{
+			Teacher t = new Teacher();
+			t.setUsername(c.getCourseOwner().getUsername());
+			c.setCourseOwner(t);
+			c.setStudents(null);
+		}
+		return result;
 	}
 	
 	@CrossOrigin()
 	@GetMapping("/edugame/Courses/{teacherUsername}")
 	public List<Course> showTeacherCourses(@PathVariable("teacherUsername") String username)
 	{
-		return courseService.getAllCoursesByTeacher(username);
+		List<Course> result = courseService.getAllCoursesByTeacher(username);
+		for( Course c : result)
+		{
+			Teacher t = new Teacher();
+			t.setUsername(c.getCourseOwner().getUsername());
+			c.setCourseOwner(t);
+			c.setStudents(null);
+		}
+		return result;
 	}
 	
 	@CrossOrigin()
 	@GetMapping("/edugame/enrolledCourses/{studentUsername}")
 	public List<Course> showStudentCourses(@PathVariable("studentUsername") String username)
 	{
-		return courseService.getAllCoursesByStudent(username);
+		List<Course> result = courseService.getAllCoursesByStudent(username);
+		for( Course c : result)
+		{
+			Teacher t = new Teacher();
+			t.setUsername(c.getCourseOwner().getUsername());
+			c.setCourseOwner(t);
+			c.setStudents(null);
+		}
+		return result;
 	}
 	
 	
@@ -45,7 +71,10 @@ public class CourseController {
 	@GetMapping("/edugame/courses/{courseName}")
 	public Course getCourse(@PathVariable("courseName") String name)
 	{
-		return courseService.getCourse(name);
+		Course c = courseService.getCourse(name);
+		c.setCourseOwner(null);
+		c.setStudents(null);
+		return c;
 	}
 	
 	@CrossOrigin()
@@ -65,6 +94,14 @@ public class CourseController {
 	@GetMapping("/edugame/unenrolledCourses/{studentUsername}")
 	public List<Course> showUnErolledCourses(@PathVariable("studentUsername") String username)
 	{
-		return courseService.getUnEnrolledCourses(username);
+		List<Course> result = courseService.getUnEnrolledCourses(username);
+		for( Course c : result)
+		{
+			Teacher t = new Teacher();
+			t.setUsername(c.getCourseOwner().getUsername());
+			c.setCourseOwner(t);
+			c.setStudents(null);
+		}
+		return result;
 	}
 }

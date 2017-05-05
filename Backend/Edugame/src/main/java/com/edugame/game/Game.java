@@ -50,6 +50,7 @@ public class Game implements Serializable {
 	@JoinColumn(name = "username")
 	private Teacher gameOwner;
 	
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "gameCollaborators", joinColumns = @JoinColumn(name = "gameName", referencedColumnName = "name"), inverseJoinColumns = @JoinColumn(name = "TeacherUsername", referencedColumnName = "username"))
 	private List<Teacher> gameCollaborators;
@@ -146,6 +147,14 @@ public class Game implements Serializable {
 
 	public void setGameCollaborators(List<Teacher> gameCollaborators) {
 		this.gameCollaborators = gameCollaborators;
+	}
+	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override

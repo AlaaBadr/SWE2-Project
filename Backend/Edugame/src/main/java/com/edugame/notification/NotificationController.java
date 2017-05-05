@@ -1,5 +1,7 @@
 package com.edugame.notification;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +15,9 @@ public class NotificationController {
 	private NotificationService notificationService;
 	
 	@CrossOrigin()
-	@GetMapping("edugame/notifications/{username}")
-	public void getUserNotifications(@PathVariable("username") String username)
+	@GetMapping("/edugame/notifications/{username}")
+	public List<Notification> getUserNotifications(@PathVariable("username") String username)
 	{
-		notificationService.getUserNotification(username);
+		return notificationService.getUserNotification(username);
 	}
 }
