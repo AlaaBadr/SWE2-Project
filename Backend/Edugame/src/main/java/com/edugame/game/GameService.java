@@ -44,11 +44,6 @@ public class GameService {
 		g.setGameOwner(t);
 		Course c = courseRep.findOne(courseName);
 		g.setCourse(c);
-//		ArrayList<Level>levels = (ArrayList<Level>) g.getLevels();
-//		for(Level l: levels)
-//		{
-//			l.setGame(g);
-//		}
 		gameRep.save(g);
 		notificationService.addGameNotification(courseName, g.getName());
 		return true;
@@ -57,7 +52,16 @@ public class GameService {
 	public Game getGame(String gameName)
 	{
 		return gameRep.findOne(gameName);
-		//return gameRep.findByCourseCourseNameAndName(courseName, gameName);
 	}
 
+	public Boolean addCollaborator(String gameName, String username) {
+		Teacher t = teacherRep.findByUsername(username);
+		Game g = gameRep.findOne(gameName);
+		List<Teacher> oldCollaborators = g.getGameCollaborators();
+		if(oldCollaborators.contains(t))
+			return false;
+		oldCollaborators.add(t);
+		gameRep.save(g);
+		return true;
+	}
 }

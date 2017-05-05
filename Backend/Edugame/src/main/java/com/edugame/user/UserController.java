@@ -45,6 +45,15 @@ public class UserController {
 	@GetMapping("/edugame/collaborator/{username}/games")
 	public List<Game> getGamesForCollaborators(@PathVariable("username") String username)
 	{
-		return userService.getGamesForCollaborators(username);
+		List<Game> result = userService.getGamesForCollaborators(username);
+		for( Game g : result)
+		{
+			Teacher t = new Teacher();
+			t.setUsername(g.getGameOwner().getUsername());
+			g.setGameOwner(t);
+			g.getCourse().setCourseOwner(t);
+			g.getCourse().setStudents(null);
+		}
+		return result;
 	}
 }

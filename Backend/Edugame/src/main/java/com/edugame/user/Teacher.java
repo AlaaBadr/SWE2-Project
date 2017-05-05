@@ -19,6 +19,7 @@ public class Teacher extends User implements Serializable{
 	 */
 	private static final long serialVersionUID = 9196215730328920623L;
 
+	@JsonIgnore
 	@ManyToMany(mappedBy = "gameCollaborators")
 	private List<Game> collaboratedGames;
 	
