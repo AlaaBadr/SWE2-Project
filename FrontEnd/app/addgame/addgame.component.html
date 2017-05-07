@@ -53,7 +53,7 @@
             <div>
                 <label>Type of your game:</label>
                 <div>
-                    <input [disabled]="mode=='Edit!'" required type="radio" id="TorF" [ngModel]="{checked: game.type == 'true-false'}" (ngModelChange)="game.type='true-false'"
+                    <input *ngIf="mode=='Done!'" [disabled]="mode=='Edit!'" required type="radio" id="TorF" [ngModel]="{checked: game.type == 'true-false'}" (ngModelChange)="game.type='true-false'"
                         name="type" value="true-false">True/False<br>
                     <input [disabled]="mode=='Edit!'" required type="radio" id="MCQ" [ngModel]="{checked: game.type == 'choice'}" (ngModelChange)="game.type='choice'"
                         name="type" value="choice">Choice<br>
@@ -61,7 +61,7 @@
             </div>
             <div class="form-group last">
                 <div class="col-sm-offset-3 col-sm-9">
-                    <button (click)="OnDone()" type="submit" id="submit" class="btn btn-success btn-sm">{{mode}}</button>
+                    <button *ngIf="mode=='Done!'" (click)="OnDone()" type="submit" id="submit" class="btn btn-success btn-sm">{{mode}}</button>
                 </div>
             </div>
         </form>

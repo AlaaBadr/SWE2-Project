@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,5 +62,19 @@ public class GameController {
 	public Boolean addCollaborator(@PathVariable("gameName") String gameName, @PathVariable("username") String username)
 	{
 		return gameService.addCollaborator(gameName, username);
+	}
+	
+	@CrossOrigin()
+	@GetMapping("/edugame/courses/games/{gameName}/copy/{courseName}")
+	public void copyGame(@PathVariable("gameName") String gameName, @PathVariable("courseName") String courseName)
+	{
+		gameService.copyGame(gameName, courseName);
+	}
+	
+	@CrossOrigin()
+	@DeleteMapping("/edugame/courses/games/{gameName}/delete")
+	public void cancelGame(@PathVariable("gameName") String gameName)
+	{
+		gameService.deleteGame(gameName);
 	}
 }

@@ -117,7 +117,7 @@ export class addgameComponent implements OnInit {
             localStorage.setItem('course', JSON.stringify(this.game.course));
             this.router.navigate(['/home']);
             
-            
+            this.level=new Level();
         }
     }
 }

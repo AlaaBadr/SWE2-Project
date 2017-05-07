@@ -8,6 +8,7 @@ export class Game {
     gameOwner: Teacher;
     levelno:number;
     course:Course;
+    comments:Comment;
    
    
 }
@@ -20,6 +21,7 @@ export interface GameType {
     gameOwner: Teacher;
     levelno:number;
     course:Course;
+    comments:Comment;
    
    
 }

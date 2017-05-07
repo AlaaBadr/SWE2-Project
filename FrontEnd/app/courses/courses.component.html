@@ -36,7 +36,11 @@
         <div id="{{course.id}}" class="panel-collapse collapse">
             <div class="panel-body">
                 <ul class="list-group" *ngIf="course.games">
-                    <li  (click)="onClick(game.name)" class="list-group-item" *ngFor="let game of course.games "> <a class="btn btn-link">{{game.name}}</a> </li>
+                    <li   class="list-group-item" *ngFor="let game of course.games "> <a (click)="onClick(game.name)" class="btn btn-link">{{game.name}}</a> 
+                        <select *ngIf="isTeacher" style="float:right" [(ngModel)]="newcourse" id="courses" name="coursesList" [disabled]="mode=='Edit!'" required>
+                        <option *ngFor="let x of Cs" [ngValue]=x >{{x.courseName}}</option></select>
+                        <button *ngIf="isTeacher" style="float:right" (click)="copy(game)" type="button" class="btn btn-default">Copy</button>
+                    </li>
                 </ul>
                 <span *ngIf="! course.games.length"> No Available games </span>
             </div>

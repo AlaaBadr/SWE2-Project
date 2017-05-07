@@ -4,6 +4,7 @@ import { CourseService } from "../_services/index";
 import { achievementService, AlertService } from "../_services/index";
 import { ActivatedRoute, Router } from "@angular/router";
 import { GameService } from "../_services/game.service";
+import { NotificationService } from "../_services/notification.service";
 
 @Component({
     moduleId: module.id,
@@ -17,7 +18,8 @@ export class homePageComponent {
         private alertService: AlertService,
         private courseservice: CourseService,
         private gameService: GameService,
-        private achsrvice :achievementService
+        private achsrvice :achievementService,
+        private notService : NotificationService
     ) { }
     courses: Course[] = [];
     private loggedUser: any;
@@ -27,6 +29,12 @@ export class homePageComponent {
     isTeacher: boolean = false;
     ach:Achievement[]=[];
     game:Game;
+    cgames:any;
+    Copy=false;
+    newColab:string;
+    added:any;
+    course: Course[] = [];
+    delete=false;
     ngOnInit() {
 
         this.loggedUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -35,12 +43,17 @@ export class homePageComponent {
         if (this.loggedUser.identity == "Teacher") {
             this.getTeacherCourses()
             this.isTeacher = true;
+            this.getCGames();
         }
         else if (this.loggedUser.identity == "Student") {
             this.getStudentAch();
             this.getStudentCourses()
             this.isStudent = true;
         }
+        this.courseservice.showTeacherCourses(this.loggedUser.username).subscribe(data => {
+            this.course = data;
+            console.log(data)
+        });
 
     }
     onClick(gameName:string){
@@ -84,7 +97,30 @@ export class homePageComponent {
             console.log(" student ach>>", this.ach)
         });
     }
-
+    Delete(gamename:string){
+        this.gameService.deletegame(gamename);
+        this.delete=true;
+        setTimeout(() => {
+            this.delete=false;
+        },2000);  
+        this.router.navigate(['/home']);
+    }
+    getCGames(){
+        this.gameService.getCGame(this.loggedUser.username).subscribe(data => {
+            this.cgames = data;
+            console.log(" games >>>", this.cgames);
+        });
+    }
+    goGame(game:Game){
+        localStorage.setItem("gameName",game.name);
+    }
+    addColab(gameName:string,){
+        console.log("new colaborator= ",this.newColab);
+        this.gameService.addColab(gameName,this.newColab).subscribe(data => {
+            this.added = data;
+            console.log(" Added >>>", this.added );
+        });
+    }
 
 }
 //app.component.html
