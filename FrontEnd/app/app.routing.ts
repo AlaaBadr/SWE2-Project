@@ -8,7 +8,9 @@ import { addcourseComponent } from "./addcourse/index";
 import { homePageComponent } from "./systemHomePage/index";
 import { enrollInComponent } from "./enrollIn/index";
 import { coursesComponent } from "./courses/index";
-import { gameComponent } from "./game/index";
+
+import { NotificationsComponent } from "./notifications/notifications.component";
+import { GameComponent } from "./game/index";
 
 
 
@@ -22,7 +24,8 @@ const appRoutes: Routes = [
     { path: 'addcourse', component:addcourseComponent },
     { path: 'enrollIn', component:enrollInComponent },
     { path: 'courses', component:coursesComponent },
-    { path: 'game', component:gameComponent },
+    { path: 'game', component:GameComponent },
+    { path: 'notification', component:NotificationsComponent },
     // otherwise redirect to home
     { path: '**', redirectTo: 'login' }
 ];

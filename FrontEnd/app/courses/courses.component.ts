@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Teacher, Course } from "../_models/index";
+import { Teacher, Course, Game } from "../_models/index";
 import { CourseService } from "../_services/index";
 import { achievementService, AlertService, GameService } from "../_services/index";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -23,6 +23,9 @@ export class coursesComponent {
     gameurl: string;
     isStudent: boolean = false;
     isTeacher: boolean = false;
+    newcourse:Course;
+    Copy=false;
+    Cs: Course[] = [];
     ngOnInit() {
 
         this.loggedUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -33,10 +36,19 @@ export class coursesComponent {
             this.isStudent = true;
         }
         this.getCourses();
+        this.courseservice.showTeacherCourses(this.loggedUser.username).subscribe(data => {
+            this.Cs = data;
+            console.log(data)
+        });
     }
     onClick(gameName:string){
         localStorage.setItem('gameName',gameName); 
         this.router.navigate(['/game']);
+    }
+    copy(game:Game){
+        //console.log(this.newcourse);
+        this.gameService.copyGame(game.name,this.newcourse.courseName);
+        
     }
     getCourseGames(listofCourses: Course[]) {
         let counter = 0;

@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.edugame.game.Game;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "comment")
@@ -17,7 +18,7 @@ public class Comment {
 	
 	@Id
 	@Column(name = "date")
-	private int date;
+	private long date;
 
 	@Column(name = "username")
 	private String username;
@@ -25,24 +26,29 @@ public class Comment {
 	@Column(name = "comment")
 	private String comment;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "name")
 	private Game game;
 
-	public Comment(String username, String comment, Game game) {
+	public Comment()
+	{
+		
+	}
+	
+	public Comment(String username, String comment) {
 		super();
-		this.date = (int) new Date().getTime();
+		this.date = (long) new Date().getTime();
 		this.username = username;
 		this.comment = comment;
-		this.game = game;
 	}
 
-	public int getDate() {
+	public long getDate() {
 		return date;
 	}
 
 	public void setDate() {
-		this.date = (int) new Date().getTime();
+		this.date = (long) new Date().getTime();
 	}
 
 	public String getUsername() {

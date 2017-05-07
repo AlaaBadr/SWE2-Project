@@ -1,9 +1,11 @@
 package com.edugame.notification;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 
 public interface NotificationRepository extends CrudRepository<Notification, NotificationID>{
 
-	void findByUsername(String username);
+	List<Notification> findByUsername(String username);
 
 }

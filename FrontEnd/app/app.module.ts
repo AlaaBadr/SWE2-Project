@@ -22,9 +22,12 @@ import { addcourseComponent } from "./addcourse/index";
 import { homePageComponent } from "./systemHomePage/index";
 import { enrollInComponent } from "./enrollIn/index";
 import { coursesComponent } from "./courses/index";
-import { gameComponent } from "./game/index";
+import {  GameComponent } from "./game/index";
+import { NotificationService } from "./_services/notification.service";
+import { NotificationsComponent } from "./notifications/notifications.component";
+import { CommentService } from "./_services/comment.service";
 
-// 
+// ;
 
 @NgModule({
     imports: [
@@ -44,9 +47,8 @@ import { gameComponent } from "./game/index";
         homePageComponent,
         enrollInComponent,
         coursesComponent,
-        gameComponent
-    
-
+        NotificationsComponent,
+        GameComponent
     ],
     providers: [
         AuthGuard,
@@ -56,7 +58,8 @@ import { gameComponent } from "./game/index";
         GameService,
         CourseService,
         achievementService,
-
+        NotificationService,
+        CommentService,
         // providers used to create fake backend
         fakeBackendProvider,
         MockBackend,

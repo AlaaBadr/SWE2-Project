@@ -23,6 +23,9 @@
         <ul class="nav navbar-nav navbar-right">
             <li><a [routerLink]="['/courses']"><span class="glyphicon glyphicon-book"></span>Courses</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a [routerLink]="['/notification']"><span class="glyphicon glyphicon-bell"></span>Notification</a></li>
+        </ul>
     </div>
 </nav>
 <br><br>
@@ -66,5 +69,29 @@
     </li>
 </ul>
 <div *ngIf="gameOver">
-   <h1> Game Over </h1>
+    <h1> Game Over </h1>
+</div>
+<div class="comment">
+    <h3>Comments</h3>
+    <ul *ngFor="let oldone of game?.comments">
+        <li>
+            <h4>{{oldone.username}}</h4>
+            <pre>{{oldone.comment}}</pre>
+        </li>
+    </ul>
+    <ul *ngFor="let comment of comments">
+        <li>
+            <h4>{{comment.username}}</h4>
+            <pre>{{comment.comment}}</pre>
+        </li>
+    </ul>
+    <label>
+         <input type="text" id="comm" style="width:800px; margin:20px;" name="comm" [(ngModel)]="comment.comment" #com="ngModel" required />
+         <button (click)="onComment(com)" style="width:100px"type="submit" class="btn btn-primary btn-block">Comment</button>
+    </label>
+</div>
+<div style="float:right;">
+    <select *ngIf="isTeacher" style="float:right" [(ngModel)]="newcourse" id="courses" name="coursesList" [disabled]="mode=='Edit!'" required>
+            <option *ngFor="let x of course" [ngValue]=x >{{x.courseName}}</option></select>
+    <button *ngIf="isTeacher" style="float:right" (click)="copy(game)" type="button" class="btn btn-default">Copy</button>
 </div>

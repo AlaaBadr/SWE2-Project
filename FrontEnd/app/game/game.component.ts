@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Level, Game } from "../_models/index";
+import { Level, Game, Comment, Course } from "../_models/index";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AlertService, CourseService, GameService, achievementService } from "../_services/index";
 import { Observable } from "rxjs/Rx";
+import { AlertService, CourseService, GameService, NotificationService, achievementService } from "../_services/index";
+import { CommentService } from "../_services/comment.service";
+
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'game.component.html'
+  selector: 'app-game',
+  templateUrl: './game.component.html'
 })
+export class GameComponent implements OnInit {
 
-export class gameComponent implements OnInit {
-    gameOver: boolean;
+  gameOver: boolean;
     diff: number;
     constructor(
         private route: ActivatedRoute,
@@ -18,8 +21,14 @@ export class gameComponent implements OnInit {
         private alertService: AlertService,
         private courseervice: CourseService,
         private gservice: GameService,
-        private achservice: achievementService) { }
+        private achservice: achievementService,
+        private comService:CommentService,
+        private notService:NotificationService  ,
+        private gameService: GameService,
+        private courseservice: CourseService) { }
+        //add notification service
     seconds: number;
+    newcourse:Course;
     listOfCourseGames: Game[] = [];
     rightAnswer: string;
     question: string;
@@ -39,16 +48,21 @@ export class gameComponent implements OnInit {
     answer: string;
     ticks = 0;
     timeOut=60000;
+    //comments
+    comment:any={};
+    comments:Comment[]=[];
+    Copy=false;
+    course: Course[] = [];
     getright(right: any) {
         this.rightAnswer = right;
         console.log("value >>>", right);
     }
     ngOnInit() {
         this.loggedUser = JSON.parse(localStorage.getItem("currentUser"));
-        if (this.loggedUser.identity == "Teacher") {
+        if (this.loggedUser.identity === "Teacher") {
             this.isTeacher = true;
         }
-        else if (this.loggedUser.identity == "Student") {
+        else if (this.loggedUser.identity === "Student") {
             this.isStudent = true;
         }
         this.getgamesofcourse();
@@ -59,6 +73,10 @@ export class gameComponent implements OnInit {
         setTimeout(() => {
             this.gameOver=true;
         },this.timeOut);
+        this.courseservice.showTeacherCourses(this.loggedUser.username).subscribe(data => {
+            this.course = data;
+            console.log(data)
+        });
     }
     OnClick() {
         if (this.rightAnswer == this.game.levels[this.i].rightAnswer) {
@@ -68,6 +86,7 @@ export class gameComponent implements OnInit {
             this.success = false;
             this.fail = true;
             if (this.loggedUser.identity == "Student") {
+                console.log("Ach\n");
                 this.achservice.addAchievement(this.loggedUser.username, this.game.name, this.i);
             }
         } else {
@@ -82,39 +101,30 @@ export class gameComponent implements OnInit {
             this.cong = false;
         }
     }
+    copy(game:Game){
+        //console.log(this.newcourse);
+        this.gameService.copyGame(game.name,this.newcourse.courseName);
+        
+    }
     getgamesofcourse() {
         this.gameName = localStorage.getItem('gameName');
+        console.log("game to paly",this.gameName);
         this.gservice.getGame(this.gameName).subscribe(data => {
             this.game = data;
             console.log("game>>>>>", this.game);
         }, error => {
             this.alertService.error(error);
-        })
+        });
+        
         //        this.bl7=this.game.levels;
         //      console.log("levels>>>",this.levels);
-
+    }
+    onComment(){
+        
+        this.comment.username=this.loggedUser.username;
+        this.comments.push(this.comment);
+        console.log("comments >> ",this.comments);
+        this.comService.addComment(this.game.name,this.comment);
+        this.comment=new Comment();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-  //      console.log("here")
- //       this.course = JSON.parse(localStorage.getItem('course'));
- /*       this.gservice.getGamesOfCourse('C++').subscribe(data => {
-            this.listOfCourseGames = data;
-            console.log(data)
-        });*/
-       /* setTimeout(() => {
-            console.log("courses game >> ", this.listOfCourseGames);
-
-        }, 2000);*/
-      //  this.levels=this.game[0].levels;
-     //   this.length=this.levels.length;

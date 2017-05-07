@@ -15,6 +15,9 @@
             <li *ngIf="isTeacher"><a [routerLink]="['/addcourse']"><span class="glyphicon glyphicon-plus"></span>Add course</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+            <li><a [routerLink]="['/notification']"><span class="glyphicon glyphicon-bell"></span>Notification</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
             <li *ngIf="isTeacher"><a [routerLink]="['/addgame']"><span class="glyphicon glyphicon-knight"></span>Add Game</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -36,8 +39,14 @@
         <div id="{{course.id}}" class="panel-collapse collapse">
             <div class="panel-body">
                 <ul class="list-group" *ngIf="course.games">
-                    <li (click)="onClick(game.name)" class="list-group-item" *ngFor="let game of course.games "> <a class="btn btn-link">{{game.name}}</a> </li>
+                    <li  class="list-group-item" *ngFor="let game of course.games "> <a (click)="onClick(game.name)" class="btn btn-link">{{game.name}}</a>
+                        <input *ngIf="isTeacher" type="text" style="float:right" id="game.name" name="clabo" [(ngModel)]="newColab" #{{game.name}}="ngModel" />
+                        <button *ngIf="isTeacher" style="float:right" (click)="addColab(game.name)"type="button" class="btn btn-default">Add Colaborator</button>
+                        <button  *ngIf="isTeacher" style="float:right" (click)="Delete(game.name)"type="button" class="btn btn-default">Delete</button>
+                    </li>
                 </ul>
+                 <span *ngIf="delete"> Game successfully deleted </span>
+                  <span *ngIf="Copy"> Game successfully copied </span>
                 <span *ngIf="! course.games.length"> No Available games </span>
             </div>
         </div>
@@ -48,5 +57,12 @@
     <li *ngFor="let x of ach">
         <h4>{{x.gameinAch.name}}</h4>
         <pre>{{x.score}}</pre>
+    </li>
+</div>
+<div *ngIf="isTeacher"style="float:left">
+    <h1>Games</h1>
+    <li *ngFor="let cgame of cgames" >
+        <pre><a onclick="goGame(cgame)" [routerLink]="['/game']">{{cgame.name}}</a></pre>
+        <button  *ngIf="isTeacher" style="float:right" (click)="Delete(game.name)"type="button" class="btn btn-default">Delete</button>
     </li>
 </div>

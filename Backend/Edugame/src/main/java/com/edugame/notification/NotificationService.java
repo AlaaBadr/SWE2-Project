@@ -1,6 +1,7 @@
 package com.edugame.notification;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,13 +25,13 @@ public class NotificationService {
 	@Autowired
 	private GameRepository gameRep;
 	
-	public void getUserNotification(String username) {
-		notificationRep.findByUsername(username);
+	public List<Notification> getUserNotification(String username) {
+		return notificationRep.findByUsername(username);
 	}
 
 	public void addGameNotification(String courseName, String name) {
 		Course c = courseRep.findOne(courseName);
-		ArrayList<Student> students = (ArrayList<Student>)c.getStudents();
+		List<Student> students = c.getStudents();
 		for(Student s: students)
 		{
 			Notification n = new Notification(s.getUsername(), name+" is added to "+courseName+" course.", name);
@@ -43,7 +44,7 @@ public class NotificationService {
 		Teacher owner = g.getGameOwner();
 		Notification n = new Notification(owner.getUsername(), "New Comment is added to game "+gameName, gameName);
 		notificationRep.save(n);
-		ArrayList<Teacher> collaborators = (ArrayList<Teacher>) g.getGameCollaborators();
+		List<Teacher> collaborators = g.getGameCollaborators();
 		for(Teacher t: collaborators)
 		{
 			Notification not = new Notification(t.getUsername(), "New Comment is added to game "+gameName, gameName);
