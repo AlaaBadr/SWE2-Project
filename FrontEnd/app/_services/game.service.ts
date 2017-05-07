@@ -23,10 +23,31 @@ export class GameService {
         let options = new RequestOptions({ headers: headers });
         return this.http.get(this.url + '/edugame/courses/games/' + gameName, options).map((response: Response) => response.json());
     }
+    getCGame(userName:string){
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get(this.url + '/edugame/collaborator/' + userName+'/games', options).map((response: Response) => response.json());
+    }
     addLevel(gameName: string ,level :Level) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this.http.post(this.url + '/edugame/courses/games/' + gameName+'/levels/addLevel',level,  options).map((response: Response) => response.json());
+    }
+    addColab(gameName:string,userName:string){
+       // debugger;
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get(this.url + '/edugame/courses/games/' + gameName+'/addCollaborator/'+userName, options).map((response: Response) => response.json());
+    }
+    deletegame(gameName:string){
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.delete(this.url + '/edugame/courses/games/' + gameName+'/delete', options).map((response: Response) => response.json());
+    }
+    copyGame(gamename:string,coursename:string){
+         let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get(this.url + '/edugame/courses/games/'+gamename+'/copy/'+coursename , options).map((response: Response) => response.json());
     }
     // private helper methods
 

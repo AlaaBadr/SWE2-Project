@@ -1,0 +1,36 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" [routerLink]="['/home']">Gamers++</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a [routerLink]="['/home']"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+        </ul>
+        <form class="navbar-form navbar-left">
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a [routerLink]="['/login']"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="isTeacher"><a [routerLink]="['/addcourse']"><span class="glyphicon glyphicon-plus"></span>Add course</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="isTeacher"><a [routerLink]="['/addgame']"><span class="glyphicon glyphicon-knight"></span>Add Game</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="isStudent"><a [routerLink]="['/enrollIn']"><span class="glyphicon glyphicon-cloud-upload"></span>Join Course</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a [routerLink]="['/courses']"><span class="glyphicon glyphicon-book"></span>Courses</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a [routerLink]="['/notification']"><span class="glyphicon glyphicon-bell"></span>Notification</a></li>
+        </ul>
+    </div>
+</nav>
+<br><br>
+<ul>
+    <li *ngFor="let notification of notifications">
+      <a (click)="OnClick(notification.link)"><pre>{{notification.notification}}</pre></a>
+    </li>
+</ul>
